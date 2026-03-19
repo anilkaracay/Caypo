@@ -1,17 +1,5 @@
-/**
- * @caypo/canton-sdk — Core SDK for Canton Network.
- * JSON Ledger API v2 client, USDCx operations, agent accounts.
- */
-
-export { MPP_CANTON_VERSION } from "@caypo/mpp-canton";
-
-export const CANTON_SDK_VERSION = "0.1.0";
-
-export const DEFAULT_LEDGER_PORT = 7575;
-
-// Canton JSON Ledger API v2 client
-export { CantonClient } from "./canton/client.js";
-export { CantonApiError, CantonAuthError, CantonTimeoutError } from "./canton/errors.js";
+export { CantonClient } from "./client.js";
+export { CantonApiError, CantonAuthError, CantonTimeoutError } from "./errors.js";
 export type {
   ActiveContract,
   ActiveContractsRequest,
@@ -39,4 +27,4 @@ export type {
   TransactionResponse,
   TransactionTree,
   TransactionTreeEvent,
-} from "./canton/types.js";
+} from "./types.js";
