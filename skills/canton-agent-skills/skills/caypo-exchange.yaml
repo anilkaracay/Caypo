@@ -1,0 +1,36 @@
+name: caypo-exchange
+version: 1.0.0
+description: Swap between USDCx and Canton Coin (CC) on Canton DEX
+triggers:
+  - "swap tokens"
+  - "exchange USDCx"
+  - "convert to CC"
+  - "trade tokens"
+  - "buy CC"
+  - "sell CC"
+  - "exchange coins"
+action:
+  type: command
+  command: "caypo exchange {amount} {from} {to}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount to swap"
+      required: true
+    from:
+      type: string
+      description: "Source token (USDCx or CC)"
+      required: true
+    to:
+      type: string
+      description: "Destination token (USDCx or CC)"
+      required: true
+output:
+  format: text
+  description: "Shows swap result with rate, output amount, and fee"
+tags:
+  - canton
+  - defi
+  - exchange
+  - dex

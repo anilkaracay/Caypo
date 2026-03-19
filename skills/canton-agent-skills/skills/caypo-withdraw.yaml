@@ -1,0 +1,28 @@
+name: caypo-withdraw
+version: 1.0.0
+description: Withdraw USDCx from savings back to checking account
+triggers:
+  - "withdraw savings"
+  - "pull funds"
+  - "move to checking"
+  - "withdraw USDCx"
+  - "get my savings"
+  - "cash out savings"
+  - "withdraw from savings"
+action:
+  type: command
+  command: "caypo withdraw {amount}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount to withdraw (number or 'all')"
+      required: true
+output:
+  format: text
+  description: "Shows withdrawal amount and any yield earned"
+tags:
+  - canton
+  - defi
+  - savings
+  - withdraw

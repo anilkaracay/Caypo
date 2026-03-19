@@ -1,0 +1,32 @@
+name: caypo-send
+version: 1.0.0
+description: Send USDCx to a recipient on Canton Network
+triggers:
+  - "send USDCx"
+  - "transfer funds"
+  - "pay to"
+  - "send money"
+  - "send to"
+  - "transfer USDCx"
+  - "wire funds"
+action:
+  type: command
+  command: "caypo send {amount} to {recipient}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount of USDCx to send"
+      required: true
+    recipient:
+      type: string
+      description: "Recipient Canton party ID (Name::hexfingerprint)"
+      required: true
+output:
+  format: text
+  description: "Shows transfer result with update ID and completion offset"
+tags:
+  - canton
+  - payments
+  - transfer
+  - usdcx

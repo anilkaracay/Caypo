@@ -1,0 +1,23 @@
+name: caypo-rebalance
+version: 1.0.0
+description: Rebalance savings to the highest yield protocol on Canton
+triggers:
+  - "rebalance savings"
+  - "optimize yield"
+  - "best rate"
+  - "better yield"
+  - "maximize returns"
+  - "move to best protocol"
+  - "rebalance portfolio"
+action:
+  type: command
+  command: caypo rebalance
+  requiresAuth: false
+output:
+  format: text
+  description: "Shows whether funds were moved and to which protocol with new APY"
+tags:
+  - canton
+  - defi
+  - yield
+  - optimization

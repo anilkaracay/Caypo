@@ -1,0 +1,33 @@
+name: caypo-pay
+version: 1.0.0
+description: Pay for an API call via MPP (Machine Payments Protocol) on Canton
+triggers:
+  - "pay for API"
+  - "pay api call"
+  - "mpp pay"
+  - "402 payment"
+  - "pay for service"
+  - "buy api access"
+  - "pay with USDCx"
+action:
+  type: command
+  command: "caypo pay {url} --max-price {maxPrice}"
+  requiresAuth: false
+  params:
+    url:
+      type: string
+      description: "URL of the API to pay for"
+      required: true
+    maxPrice:
+      type: string
+      description: "Maximum USDCx price willing to pay"
+      required: false
+      default: "0.10"
+output:
+  format: text
+  description: "Shows payment result, amount paid, and API response"
+tags:
+  - canton
+  - mpp
+  - payments
+  - api

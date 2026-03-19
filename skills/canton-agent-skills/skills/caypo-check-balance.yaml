@@ -1,0 +1,25 @@
+name: caypo-check-balance
+version: 1.0.0
+description: Check CAYPO wallet balance across all accounts on Canton Network
+triggers:
+  - "check balance"
+  - "show balance"
+  - "how much do I have"
+  - "wallet balance"
+  - "caypo balance"
+  - "my funds"
+  - "account summary"
+  - "what's my balance"
+action:
+  type: command
+  command: caypo balance
+  requiresAuth: false
+output:
+  format: text
+  description: "Shows checking, savings, credit, investment balances with APY and P&L"
+tags:
+  - canton
+  - payments
+  - defi
+  - ai-agents
+  - balance

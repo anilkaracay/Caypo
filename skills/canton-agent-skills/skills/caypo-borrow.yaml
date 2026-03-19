@@ -1,0 +1,28 @@
+name: caypo-borrow
+version: 1.0.0
+description: Borrow USDCx against savings collateral on Canton
+triggers:
+  - "borrow money"
+  - "take a loan"
+  - "borrow USDCx"
+  - "get credit"
+  - "need a loan"
+  - "borrow against savings"
+  - "credit line"
+action:
+  type: command
+  command: "caypo borrow {amount}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount of USDCx to borrow"
+      required: true
+output:
+  format: text
+  description: "Shows borrow result with rate, health factor, and loan ID"
+tags:
+  - canton
+  - defi
+  - credit
+  - lending

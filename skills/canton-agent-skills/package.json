@@ -1,0 +1,30 @@
+{
+  "name": "@caypo/canton-agent-skills",
+  "version": "0.1.0",
+  "description": "Agent skills for CAYPO on Canton Network — works with Claude Code, Codex, Copilot, Cursor, Windsurf, Amp",
+  "main": "index.js",
+  "keywords": [
+    "canton",
+    "ai-agents",
+    "skills",
+    "claude-code",
+    "codex",
+    "copilot",
+    "cursor",
+    "windsurf",
+    "mpp",
+    "payments",
+    "usdcx"
+  ],
+  "author": "Cayvox Labs <anil@cayvox.com>",
+  "homepage": "https://github.com/anilkaracay/Caypo/tree/main/skills/canton-agent-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anilkaracay/Caypo.git",
+    "directory": "skills/canton-agent-skills"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "peerDependencies": {
+    "@caypo/canton-cli": ">=0.1.0"
+  }
+}

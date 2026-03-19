@@ -1,0 +1,23 @@
+name: caypo-sentinel
+version: 1.0.0
+description: View and manage CAYPO spending safeguards on Canton
+triggers:
+  - "check safeguards"
+  - "spending limits"
+  - "security settings"
+  - "lock wallet"
+  - "unlock wallet"
+  - "set spending limit"
+  - "safeguard status"
+action:
+  type: command
+  command: caypo safeguards
+  requiresAuth: false
+output:
+  format: text
+  description: "Shows per-tx limit, daily limit, lock status, and daily spending"
+tags:
+  - canton
+  - security
+  - safeguards
+  - limits

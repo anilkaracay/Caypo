@@ -1,0 +1,28 @@
+name: caypo-repay
+version: 1.0.0
+description: Repay borrowed USDCx with interest on Canton
+triggers:
+  - "repay loan"
+  - "pay back"
+  - "settle debt"
+  - "repay borrow"
+  - "pay off loan"
+  - "clear debt"
+  - "repay USDCx"
+action:
+  type: command
+  command: "caypo repay {amount}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount to repay (number or 'all')"
+      required: true
+output:
+  format: text
+  description: "Shows repayment amount, interest paid, and remaining debt"
+tags:
+  - canton
+  - defi
+  - credit
+  - repay

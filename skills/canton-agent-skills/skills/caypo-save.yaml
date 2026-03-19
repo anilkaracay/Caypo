@@ -1,0 +1,28 @@
+name: caypo-save
+version: 1.0.0
+description: Deposit USDCx into savings to earn yield on Canton DeFi
+triggers:
+  - "save money"
+  - "deposit to savings"
+  - "earn yield"
+  - "put to work"
+  - "start saving"
+  - "move to savings"
+  - "deposit USDCx"
+action:
+  type: command
+  command: "caypo save {amount}"
+  requiresAuth: false
+  params:
+    amount:
+      type: string
+      description: "Amount to deposit (number or 'all')"
+      required: true
+output:
+  format: text
+  description: "Shows deposit confirmation with protocol name, APY, and savings balance"
+tags:
+  - canton
+  - defi
+  - savings
+  - yield
