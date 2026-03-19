@@ -35,7 +35,7 @@ export default function Header() {
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { label: "Docs", href: "https://github.com/anilkaracay/Caypo/tree/main/docs", external: true },
+            { label: "Docs", href: "/docs" },
             {
               label: "GitHub",
               href: "https://github.com/anilkaracay/Caypo",
