@@ -1,5 +1,6 @@
 {
   "name": "mppx",
+  "private": true,
   "version": "0.0.1",
   "description": "Local type stub for mppx (placeholder until real package is available)",
   "type": "module",
