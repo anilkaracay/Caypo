@@ -7,7 +7,10 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "clean": "turbo run clean && rm -rf node_modules",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
+    "verify": "npx tsx scripts/verify.ts",
+    "verify:canton": "npx tsx scripts/verify.ts --with-canton http://localhost:7575"
   },
   "devDependencies": {
     "turbo": "^2.5.0",
@@ -16,6 +19,7 @@
     "vitest": "^3.1.0",
     "eslint": "^9.24.0",
     "prettier": "^3.5.0",
-    "@types/node": "^20.17.0"
+    "@types/node": "^20.17.0",
+    "tsx": "^4.19.0"
   }
 }
