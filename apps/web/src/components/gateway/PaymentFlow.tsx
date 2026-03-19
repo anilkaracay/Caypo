@@ -1,43 +1,59 @@
-const BOXES = [
-  { title: "Agent", subtitle: "sends request", highlight: false },
-  { title: "Gateway", subtitle: "returns 402", highlight: false },
-  { title: "Canton", subtitle: "verifies payment", highlight: true },
-  { title: "Agent", subtitle: "receives response", highlight: false },
+const CARDS = [
+  {
+    step: "01",
+    title: "Agent sends request",
+    code: `GET /v1/chat/completions\nContent-Type: application/json`,
+    highlight: false,
+  },
+  {
+    step: "02",
+    title: "Gateway returns 402",
+    code: `HTTP 402 Payment Required\nWWW-Authenticate: Payment\n  method="canton" amount="0.003"`,
+    highlight: false,
+  },
+  {
+    step: "03",
+    title: "Canton verifies payment",
+    code: `TransferFactory.Transfer\n→ 0.003 USDCx → merchant`,
+    highlight: true,
+  },
+  {
+    step: "04",
+    title: "Agent receives response",
+    code: `HTTP 200 OK\nPayment-Receipt: canton:tx/0x7a..`,
+    highlight: false,
+  },
 ];
-
-const ARROW_LABELS = ["402", "USDCx", "200"];
 
 export default function PaymentFlow() {
   return (
     <div>
       <h2 className="text-lg font-medium mb-8">How payment works</h2>
 
-      <div className="flex items-center justify-between max-w-4xl mx-auto gap-2 flex-wrap">
-        {BOXES.map((box, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div
-              className={`px-4 py-3 text-center min-w-[140px] rounded-lg border ${
-                box.highlight
-                  ? "border-emerald-500/30 bg-emerald-500/5"
-                  : "bg-surface border-border"
-              }`}
-            >
-              <p className="text-sm font-medium">{box.title}</p>
-              <p className="text-xs text-muted mt-1">{box.subtitle}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {CARDS.map((card) => (
+          <div
+            key={card.step}
+            className={`rounded-xl p-5 border ${
+              card.highlight
+                ? "border-t-2 border-t-blue-500/50 bg-blue-500/[0.02] border-border"
+                : "bg-surface border-border"
+            }`}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xs font-[family-name:var(--font-geist-mono)] text-muted">
+                {card.step}
+              </span>
+              <span className="text-sm font-medium">{card.title}</span>
             </div>
-            {i < BOXES.length - 1 && (
-              <div className="flex flex-col items-center mx-1">
-                <span className="text-[10px] text-muted mb-0.5">
-                  {ARROW_LABELS[i]}
-                </span>
-                <span className="text-muted text-lg">&rarr;</span>
-              </div>
-            )}
+            <div className="bg-[#0a0a0a] rounded-lg p-3 font-[family-name:var(--font-geist-mono)] text-xs text-muted whitespace-pre">
+              {card.code}
+            </div>
           </div>
         ))}
       </div>
 
-      <p className="text-center mt-6 text-xs text-muted font-[family-name:var(--font-geist-mono)]">
+      <p className="text-center mt-8 text-sm text-muted font-[family-name:var(--font-geist-mono)]">
         Average payment latency: &lt;500ms. All payments are final. No
         chargebacks.
       </p>

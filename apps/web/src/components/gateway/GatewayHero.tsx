@@ -94,14 +94,14 @@ function TerminalTyping() {
           <div key={i} className="flex items-end">
             <span
               className={
-                line.type === "output" ? "text-emerald-400" : "text-foreground"
+                line.type === "output" ? "text-blue-400" : "text-foreground"
               }
             >
               {line.text}
             </span>
             {isLast && !done && (
               <span
-                className="inline-block w-[2px] h-[14px] bg-emerald-400 ml-0.5 mb-0.5"
+                className="inline-block w-[2px] h-[14px] bg-blue-400 ml-0.5 mb-0.5"
                 style={{ opacity: showCursor ? 1 : 0 }}
               />
             )}
@@ -112,7 +112,7 @@ function TerminalTyping() {
         <div className="flex items-end">
           <span className="text-foreground">$ </span>
           <span
-            className="inline-block w-[2px] h-[14px] bg-emerald-400 ml-0.5 mb-0.5"
+            className="inline-block w-[2px] h-[14px] bg-blue-400 ml-0.5 mb-0.5"
             style={{ opacity: showCursor ? 1 : 0 }}
           />
         </div>
@@ -136,7 +136,7 @@ export default function GatewayHero() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="text-sm font-[family-name:var(--font-geist-mono)] uppercase tracking-[0.15em] text-emerald-500 mb-6"
+            className="text-sm font-[family-name:var(--font-geist-mono)] uppercase tracking-[0.15em] text-blue-400 mb-6"
           >
             CAYPO Gateway
           </motion.p>
@@ -154,7 +154,7 @@ export default function GatewayHero() {
               <span
                 style={{
                   background:
-                    "linear-gradient(to right, #34d399, #6ee7b7)",
+                    "linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -168,10 +168,9 @@ export default function GatewayHero() {
             {["No API keys.", "No accounts.", "No signup."].map((line, i) => (
               <motion.p
                 key={line}
-                custom={2 + i}
-                initial="hidden"
-                animate="visible"
-                variants={fadeUp}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + i * 0.1, duration: 0.4 }}
                 className="text-muted text-lg"
               >
                 {line}
@@ -196,13 +195,13 @@ export default function GatewayHero() {
           >
             <a
               href="#services"
-              className="bg-emerald-500 hover:bg-emerald-400 text-background px-6 py-3 rounded-lg font-medium transition-all duration-200"
+              className="bg-blue-500 hover:bg-blue-400 text-background px-6 py-3 rounded-lg font-medium transition-all duration-200"
             >
               Get Started
             </a>
             <a
               href="#services"
-              className="border border-border hover:border-emerald-500/30 text-muted hover:text-foreground px-6 py-3 rounded-lg transition-all duration-200"
+              className="border border-border hover:border-blue-500/30 text-muted hover:text-foreground px-6 py-3 rounded-lg transition-all duration-200"
             >
               View Services
             </a>
@@ -215,17 +214,24 @@ export default function GatewayHero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" as const }}
         >
-          <div className="bg-[#0D0D0D] border border-border rounded-xl overflow-hidden">
-            {/* Terminal header */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-              <span className="w-3 h-3 rounded-full bg-red-500/70" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-              <span className="w-3 h-3 rounded-full bg-green-500/70" />
-              <span className="ml-3 text-xs text-muted font-[family-name:var(--font-geist-mono)]">
-                Terminal
-              </span>
+          <div className="relative">
+            {/* Glow behind terminal */}
+            <div
+              className="absolute inset-0 -z-10 blur-3xl opacity-20"
+              style={{ background: "radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%)" }}
+            />
+            <div className="bg-[#0D0D0D] border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-blue-500/30 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)]">
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
+                <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                <span className="ml-3 text-xs text-muted font-[family-name:var(--font-geist-mono)]">
+                  Terminal
+                </span>
+              </div>
+              <TerminalTyping />
             </div>
-            <TerminalTyping />
           </div>
           <p className="text-xs text-muted text-center mt-3">
             Works with Claude Code · Cursor · Any MCP client

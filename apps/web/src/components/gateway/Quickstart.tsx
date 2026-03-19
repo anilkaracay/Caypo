@@ -37,6 +37,7 @@ const result = await
     }
   }
 }`,
+    recommended: true,
   },
 ];
 
@@ -51,7 +52,9 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="text-xs text-muted hover:text-emerald-400 transition-colors cursor-pointer"
+      className={`text-xs transition-colors cursor-pointer ${
+        copied ? "text-blue-400" : "text-muted hover:text-blue-400"
+      }`}
     >
       {copied ? "Copied!" : "Copy"}
     </button>
@@ -66,31 +69,45 @@ export default function Quickstart() {
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {CARDS.map((card) => (
-          <div
-            key={card.label}
-            className="bg-surface border border-border rounded-xl overflow-hidden"
-          >
-            {/* Card header */}
-            <div className="px-5 py-3 border-b border-border flex justify-between items-center">
-              <span className="font-[family-name:var(--font-geist-mono)] text-sm font-medium">
-                {card.label}
-              </span>
-              <CopyButton text={card.code} />
-            </div>
+        {CARDS.map((card) => {
+          const isMcp = card.recommended;
+          return (
+            <div
+              key={card.label}
+              className={`bg-surface border rounded-xl overflow-hidden ${
+                isMcp
+                  ? "border-blue-500/50 shadow-[0_0_30px_rgba(59,130,246,0.06)]"
+                  : "border-border"
+              }`}
+            >
+              {/* Card header */}
+              <div className="px-5 py-3 border-b border-border flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <span className="font-[family-name:var(--font-geist-mono)] text-sm font-medium">
+                    {card.label}
+                  </span>
+                  {isMcp && (
+                    <span className="text-[10px] uppercase tracking-wider bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded-full font-medium">
+                      Recommended
+                    </span>
+                  )}
+                </div>
+                <CopyButton text={card.code} />
+              </div>
 
-            {/* Code block */}
-            <pre className="bg-[#0a0a0a] p-5 font-[family-name:var(--font-geist-mono)] text-sm text-emerald-400 whitespace-pre overflow-x-auto">
-              {card.code}
-            </pre>
+              {/* Code block */}
+              <pre className="bg-[#0a0a0a] p-5 font-[family-name:var(--font-geist-mono)] text-sm text-blue-400 whitespace-pre overflow-x-auto">
+                {card.code}
+              </pre>
 
-            {/* Best for */}
-            <div className="px-5 py-3 text-xs text-muted">
-              <span className="text-muted/60">Best for: </span>
-              {card.bestFor}
+              {/* Best for */}
+              <div className="px-5 py-3 text-xs text-muted">
+                <span className="text-muted/60 font-medium">Best for: </span>
+                {card.bestFor}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="text-xs text-emerald-400 hover:text-emerald-300 cursor-pointer mt-2 transition-colors"
+      className="text-xs text-blue-400 hover:text-blue-300 cursor-pointer mt-2 transition-colors"
     >
       {copied ? "Copied!" : "Copy"}
     </button>
@@ -26,6 +26,13 @@ export default function ServiceCatalog() {
     keyof typeof CATEGORIES
   >;
 
+  const featuredServices = GATEWAY_SERVICES.filter(
+    (s) => s.id === "openai" || s.id === "anthropic"
+  );
+  const regularServices = GATEWAY_SERVICES.filter(
+    (s) => s.id !== "openai" && s.id !== "anthropic"
+  );
+
   return (
     <div>
       {/* Header */}
@@ -33,10 +40,33 @@ export default function ServiceCatalog() {
         17 services · 46 endpoints · from $0.0005/request
       </p>
 
+      {/* Featured services */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        {featuredServices.map((service) => (
+          <div
+            key={service.id}
+            className="bg-surface border border-border border-t-2 border-t-blue-500/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-200 cursor-default"
+          >
+            <p className="text-lg font-medium text-foreground">{service.name}</p>
+            <p className="text-sm text-muted mt-1">{service.description}</p>
+            <div className="font-[family-name:var(--font-geist-mono)] text-sm mt-3">
+              <span className="text-muted">{service.endpoints} endpoints · </span>
+              <span className="text-blue-400">{service.priceRange}</span>
+            </div>
+            {service.models && service.models.length > 0 && (
+              <p className="text-xs text-muted mt-2">
+                {service.models.join(" · ")}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+
       {/* Categories */}
       {categoryKeys.map((catKey) => {
         const cat = CATEGORIES[catKey];
-        const services = GATEWAY_SERVICES.filter((s) => s.category === catKey);
+        const services = regularServices.filter((s) => s.category === catKey);
+        if (services.length === 0) return null;
         return (
           <div key={catKey} className="mb-8">
             {/* Category label */}
@@ -52,7 +82,7 @@ export default function ServiceCatalog() {
               {services.map((service) => (
                 <div
                   key={service.id}
-                  className="group relative bg-surface border border-border rounded-lg p-4 hover:border-emerald-500/30 transition-all duration-200 cursor-default"
+                  className="group relative bg-surface border border-border rounded-lg p-4 hover:border-blue-500/30 transition-all duration-200 cursor-default"
                 >
                   <p className="text-sm font-medium text-foreground">
                     {service.name}
@@ -64,7 +94,7 @@ export default function ServiceCatalog() {
                     <span className="font-[family-name:var(--font-geist-mono)] text-xs text-muted">
                       {service.endpoints} endpoints
                     </span>
-                    <span className="font-[family-name:var(--font-geist-mono)] text-xs text-emerald-400">
+                    <span className="font-[family-name:var(--font-geist-mono)] text-xs text-blue-400">
                       {service.priceRange}
                     </span>
                   </div>

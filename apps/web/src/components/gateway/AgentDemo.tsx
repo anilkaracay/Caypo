@@ -46,9 +46,6 @@ export default function AgentDemo() {
   return (
     <div>
       {/* Header */}
-      <p className="text-xs font-[family-name:var(--font-geist-mono)] uppercase tracking-[0.15em] text-emerald-500 mb-3">
-        See it in action
-      </p>
       <h2 className="font-[family-name:var(--font-instrument-serif)] text-3xl lg:text-4xl mb-2">
         Your agent uses services.
       </h2>
@@ -70,7 +67,7 @@ export default function AgentDemo() {
             {i === activeIdx && (
               <motion.div
                 layoutId="demo-tab"
-                className="absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-500"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-500"
                 transition={{ duration: 0.25, ease: "easeOut" as const }}
               />
             )}
@@ -92,9 +89,11 @@ export default function AgentDemo() {
         >
           <div className="bg-surface border border-border rounded-xl p-6 mt-0">
             {/* Prompt */}
-            <p className="text-foreground font-medium italic border-l-2 border-emerald-500/50 pl-4">
-              &ldquo;{tab.prompt}&rdquo;
-            </p>
+            <div className="bg-blue-500/5 border-l-2 border-blue-500/50 pl-4 py-3 rounded-r-lg">
+              <p className="text-foreground font-medium italic">
+                &ldquo;{tab.prompt}&rdquo;
+              </p>
+            </div>
 
             {/* Agent called line */}
             <div className="flex items-center gap-2 mt-4 mb-4 flex-wrap">
@@ -102,12 +101,12 @@ export default function AgentDemo() {
               {tab.services.map((s) => (
                 <span
                   key={s.name}
-                  className="bg-surface-hover px-2 py-0.5 rounded text-xs font-[family-name:var(--font-geist-mono)]"
+                  className="px-3 py-1 rounded-full border border-border text-xs font-[family-name:var(--font-geist-mono)]"
                 >
                   {s.name}
                 </span>
               ))}
-              <span className="text-emerald-400 font-[family-name:var(--font-geist-mono)] text-sm ml-auto">
+              <span className="text-blue-400 font-[family-name:var(--font-geist-mono)] text-base font-medium ml-auto">
                 {tab.services.map((s) => s.cost).join(" + ")}
               </span>
             </div>
@@ -116,7 +115,7 @@ export default function AgentDemo() {
             {tab.steps.map((step, si) => (
               <div key={si} className="mb-4">
                 <p className="text-sm text-muted mb-2">{step.title}</p>
-                <div className="bg-[#0a0a0a] rounded-lg p-3">
+                <div className="bg-[#0a0a0a] rounded-lg p-3 border-l-2 border-blue-500/20">
                   {step.items.map((item, ii) => (
                     <div
                       key={ii}
@@ -133,7 +132,7 @@ export default function AgentDemo() {
                         <span className="text-xs text-muted">{item.detail}</span>
                       </div>
                       {item.source && (
-                        <span className="text-xs text-emerald-400">
+                        <span className="text-xs text-blue-400">
                           {item.source}
                         </span>
                       )}
@@ -151,7 +150,7 @@ export default function AgentDemo() {
               <span className="text-sm text-muted">
                 Total cost ({tab.services.length} API calls)
               </span>
-              <span className="text-emerald-400 font-[family-name:var(--font-geist-mono)] font-medium">
+              <span className="text-xl font-[family-name:var(--font-geist-mono)] text-blue-400 font-semibold">
                 {tab.totalCost}
               </span>
             </div>
@@ -182,7 +181,7 @@ function ProgressBar({ key: _key }: { key?: number }) {
   return (
     <div className="h-[2px] bg-border w-full mb-0">
       <div
-        className="h-full bg-emerald-500"
+        className="h-full bg-blue-500"
         style={{
           width: started ? "100%" : "0%",
           transition: started ? "width 8s linear" : "none",
