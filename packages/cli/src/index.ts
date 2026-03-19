@@ -19,7 +19,7 @@ import { exchangeCommand, ratesCommand } from "./commands/exchange.js";
 import { investCommand, portfolioCommand, positionsCommand } from "./commands/invest.js";
 import { claimRewardsCommand } from "./commands/rewards.js";
 
-export const CANTON_CLI_VERSION = "0.1.0";
+export const CANTON_CLI_VERSION = "0.2.0";
 
 const program = new Command();
 

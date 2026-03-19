@@ -8,7 +8,7 @@ import { cors } from "hono/cors";
 import { registerServiceRoutes } from "./routes/services.js";
 import { registerDiscoveryRoutes } from "./routes/discovery.js";
 
-export const CANTON_GATEWAY_VERSION = "0.1.0";
+export const CANTON_GATEWAY_VERSION = "0.2.0";
 
 export const app = new Hono();
 

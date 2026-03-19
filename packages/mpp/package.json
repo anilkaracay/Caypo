@@ -1,6 +1,6 @@
 {
   "name": "@caypo/mpp-canton",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Canton Network payment method for the Machine Payments Protocol (MPP) — accept and make USDCx payments in any HTTP API",
   "keywords": ["canton", "mpp", "payments", "ai-agents", "stablecoin", "usdcx", "blockchain", "machine-payments", "stripe", "tempo"],
   "author": "Cayvox Labs <dev@caypo.xyz>",

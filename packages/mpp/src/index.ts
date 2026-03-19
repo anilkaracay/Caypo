@@ -3,7 +3,7 @@
  * Uses CIP-56 TransferPreapproval for 1-step transfers.
  */
 
-export const MPP_CANTON_VERSION = "0.1.0";
+export const MPP_CANTON_VERSION = "0.2.0";
 
 // Method definition
 export { cantonMethod } from "./method.js";

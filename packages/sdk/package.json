@@ -1,6 +1,6 @@
 {
   "name": "@caypo/canton-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Core SDK for AI agent banking on Canton Network — USDCx transfers, encrypted wallets, safeguards, and MPP auto-pay",
   "keywords": ["canton", "sdk", "payments", "ai-agents", "stablecoin", "usdcx", "blockchain", "machine-payments", "wallet", "defi"],
   "author": "Cayvox Labs <dev@caypo.xyz>",

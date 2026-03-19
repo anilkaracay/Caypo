@@ -1,6 +1,6 @@
 {
   "name": "@caypo/canton-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI for AI agent banking on Canton Network — send, receive, and pay for APIs with USDCx",
   "keywords": ["canton", "cli", "payments", "ai-agents", "usdcx", "blockchain", "machine-payments", "wallet", "mpp"],
   "author": "Cayvox Labs <dev@caypo.xyz>",

@@ -5,7 +5,7 @@
 
 export { MPP_CANTON_VERSION } from "@caypo/mpp-canton";
 
-export const CANTON_SDK_VERSION = "0.1.0";
+export const CANTON_SDK_VERSION = "0.2.0";
 
 export const DEFAULT_LEDGER_PORT = 7575;
 

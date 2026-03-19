@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.2.0 (2026-03-19)
+
+Milestone 2 — Full Agent Platform.
+
+### Added
+- **SavingsAccount** with yield protocol adapters (MockYieldProtocol: 4% APY)
+- **CreditAccount** with collateral management and health factor monitoring (min 1.5)
+- **ExchangeAccount** with DEX adapter (USDCx/CC swap with slippage protection)
+- **InvestmentAccount** with portfolio P&L, 4 built-in strategies, custom strategies, DCA auto-invest
+- Protocol adapter pattern: YieldProtocol, LendingProtocol, DexProtocol interfaces
+- **All 35 MCP tools live** (was 14 live + 19 stubs)
+- **All 20 MCP prompts fully implemented** (was 5 full + 15 stubs)
+- **25+ CLI commands** (was 8): savings, credit, exchange, investment, rewards
+- **Agent skills package**: 10 YAML skills for Claude Code, Codex, Copilot, Cursor, Windsurf
+- Canton method specification for MPP specs (`specs/canton-method-spec.md`)
+- Full API documentation (`docs/api/`)
+- Integration guides: quickstart, accept-payments, mcp-setup (`docs/guides/`)
+- Production gateway: Dockerfile, docker-compose.prod.yml, Caddyfile, metrics endpoint
+- Deployment script (`scripts/deploy-gateway.sh`)
+- TransferPreapproval setup guide (`scripts/setup-preapproval.ts`)
+- Domain: caypo.xyz / mpp.caypo.xyz
+
+### Changed
+- `CantonAgent` now exposes all 5 accounts (savings, credit, exchange, invest)
+- `caypo balance` shows all accounts with net total
+- Domain migration: cayvox.io → caypo.xyz
+- 62 new tests (savings, credit, exchange, investment)
+
 ## v0.1.0 (2026-03-19)
 
 Initial release — full monorepo with 5 packages.

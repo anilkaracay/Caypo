@@ -1,6 +1,6 @@
 {
   "name": "@caypo/canton-gateway",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MPP API gateway for Canton Network — pay-per-request access to OpenAI, Anthropic, and 15+ services with USDCx",
   "keywords": ["canton", "gateway", "mpp", "payments", "ai-agents", "openai", "anthropic", "api-proxy", "usdcx", "hono"],
   "author": "Cayvox Labs <dev@caypo.xyz>",

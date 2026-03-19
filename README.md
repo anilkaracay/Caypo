@@ -169,7 +169,7 @@ Pay-per-request access to 17 API services. No API keys needed — just USDCx.
 ```
 ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
 │  MCP Server │  │     CLI     │  │   Gateway   │
-│  33 tools   │  │  8 commands │  │ 17 services │
+│  35 tools   │  │  25+ cmds   │  │ 17 services │
 │  20 prompts │  │  chalk+ora  │  │  46 endpts  │
 └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
        └────────────────┼────────────────┘
@@ -207,13 +207,15 @@ Pay-per-request access to 17 API services. No API keys needed — just USDCx.
 ## Verified on Canton DevNet
 
 ```
-264 tests — 100% passing
+312 tests — 100% passing
  14 E2E tests against live Canton DevNet (Splice v0.5.12)
   7 packages — all building
+ 35 MCP tools — all live
+ 20 MCP prompts — all implemented
  46 gateway endpoints — /health returns 200
 ```
 
-Test breakdown: 215 SDK (client, USDCx, amounts, safeguards, keystore, agent, pay-client) + 35 MPP (schemas, client, server, round-trip) + 14 E2E (live Canton DevNet).
+Test breakdown: 277 SDK (client, USDCx, amounts, safeguards, keystore, agent, pay-client, savings, credit, exchange, investment) + 35 MPP (schemas, client, server, round-trip) + 14 E2E (live Canton DevNet).
 
 ## Roadmap
 

@@ -11,7 +11,7 @@ import { CantonAgent } from "@caypo/canton-sdk";
 import { registerTools } from "./tools/index.js";
 import { registerPrompts } from "./prompts/index.js";
 
-export const CANTON_MCP_VERSION = "0.1.0";
+export const CANTON_MCP_VERSION = "0.2.0";
 
 async function main() {
   // 1. Create agent
