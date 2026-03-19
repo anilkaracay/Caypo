@@ -9,9 +9,16 @@
  */
 
 import { CheckingAccount } from "./accounts/checking.js";
+import { SavingsAccount } from "./accounts/savings.js";
+import { CreditAccount } from "./accounts/credit.js";
+import { ExchangeAccount } from "./accounts/exchange.js";
+import { InvestmentAccount } from "./accounts/investment.js";
 import { CantonClient } from "./canton/client.js";
 import { USDCxService } from "./canton/usdcx.js";
 import { MppPayClient } from "./mpp/pay-client.js";
+import { MockYieldProtocol } from "./protocols/yield.js";
+import { MockLendingProtocol } from "./protocols/lending.js";
+import { MockDexProtocol } from "./protocols/dex.js";
 import { SafeguardManager } from "./safeguards/manager.js";
 import { TrafficManager } from "./traffic/manager.js";
 import {
@@ -37,6 +44,10 @@ export interface CantonAgentConfig {
 
 export class CantonAgent {
   readonly checking: CheckingAccount;
+  readonly savings: SavingsAccount;
+  readonly credit: CreditAccount;
+  readonly exchange: ExchangeAccount;
+  readonly invest: InvestmentAccount;
   readonly safeguards: SafeguardManager;
   readonly traffic: TrafficManager;
   readonly mpp: MppPayClient;
@@ -45,22 +56,30 @@ export class CantonAgent {
   private readonly client: CantonClient;
   private readonly usdcx: USDCxService;
 
-  private constructor(
-    client: CantonClient,
-    usdcx: USDCxService,
-    checking: CheckingAccount,
-    safeguards: SafeguardManager,
-    traffic: TrafficManager,
-    mpp: MppPayClient,
-    wallet: WalletInfo,
-  ) {
-    this.client = client;
-    this.usdcx = usdcx;
-    this.checking = checking;
-    this.safeguards = safeguards;
-    this.traffic = traffic;
-    this.mpp = mpp;
-    this.wallet = wallet;
+  private constructor(fields: {
+    client: CantonClient;
+    usdcx: USDCxService;
+    checking: CheckingAccount;
+    savings: SavingsAccount;
+    credit: CreditAccount;
+    exchange: ExchangeAccount;
+    invest: InvestmentAccount;
+    safeguards: SafeguardManager;
+    traffic: TrafficManager;
+    mpp: MppPayClient;
+    wallet: WalletInfo;
+  }) {
+    this.client = fields.client;
+    this.usdcx = fields.usdcx;
+    this.checking = fields.checking;
+    this.savings = fields.savings;
+    this.credit = fields.credit;
+    this.exchange = fields.exchange;
+    this.invest = fields.invest;
+    this.safeguards = fields.safeguards;
+    this.traffic = fields.traffic;
+    this.mpp = fields.mpp;
+    this.wallet = fields.wallet;
   }
 
   /**
@@ -96,13 +115,25 @@ export class CantonAgent {
     const checking = new CheckingAccount(usdcx, safeguards, client, merged.partyId);
     const mpp = new MppPayClient(usdcx, safeguards, merged.partyId, merged.network);
 
+    // 4. Account services with default protocol adapters
+    const savings = new SavingsAccount(usdcx, merged.partyId);
+    savings.addProtocol(new MockYieldProtocol());
+
+    const dex = new MockDexProtocol();
+    const exchange = new ExchangeAccount(dex, client, merged.partyId);
+
+    const lending = new MockLendingProtocol();
+    const credit = new CreditAccount(lending, merged.partyId);
+
+    const invest = new InvestmentAccount(exchange);
+
     const wallet: WalletInfo = {
       address: merged.partyId,
       partyId: merged.partyId,
       network: merged.network,
     };
 
-    return new CantonAgent(client, usdcx, checking, safeguards, traffic, mpp, wallet);
+    return new CantonAgent({ client, usdcx, checking, savings, credit, exchange, invest, safeguards, traffic, mpp, wallet });
   }
 
   /**
@@ -121,12 +152,21 @@ export class CantonAgent {
     const checking = new CheckingAccount(usdcx, safeguards, params.client, params.partyId);
     const mpp = new MppPayClient(usdcx, safeguards, params.partyId, params.network);
 
+    const savings = new SavingsAccount(usdcx, params.partyId);
+    savings.addProtocol(new MockYieldProtocol());
+
+    const dex = new MockDexProtocol();
+    const exchange = new ExchangeAccount(dex, params.client, params.partyId);
+    const lending = new MockLendingProtocol();
+    const credit = new CreditAccount(lending, params.partyId);
+    const invest = new InvestmentAccount(exchange);
+
     const wallet: WalletInfo = {
       address: params.partyId,
       partyId: params.partyId,
       network: params.network,
     };
 
-    return new CantonAgent(params.client, usdcx, checking, safeguards, traffic, mpp, wallet);
+    return new CantonAgent({ client: params.client, usdcx, checking, savings, credit, exchange, invest, safeguards, traffic, mpp, wallet });
   }
 }

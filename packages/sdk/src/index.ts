@@ -95,3 +95,26 @@ export type { TrafficBalance, AutoPurchaseConfig } from "./traffic/manager.js";
 // MPP pay client
 export { MppPayClient, parseWwwAuthenticate } from "./mpp/pay-client.js";
 export type { PayOptions, PayResult, PaymentChallenge } from "./mpp/pay-client.js";
+
+// Savings account
+export { SavingsAccount } from "./accounts/savings.js";
+export type { DeFiPosition, EarningsReport } from "./accounts/savings.js";
+
+// Credit account
+export { CreditAccount } from "./accounts/credit.js";
+
+// Exchange account
+export { ExchangeAccount } from "./accounts/exchange.js";
+export type { SwapOptions } from "./accounts/exchange.js";
+
+// Investment account
+export { InvestmentAccount, CANTON_ASSETS, STRATEGIES } from "./accounts/investment.js";
+export type { Position, PortfolioSummary, Strategy, Allocation, AutoInvestConfig } from "./accounts/investment.js";
+
+// Protocol adapters
+export { MockYieldProtocol } from "./protocols/yield.js";
+export type { YieldProtocol, YieldBalance, DepositResult, WithdrawResult } from "./protocols/yield.js";
+export { MockLendingProtocol } from "./protocols/lending.js";
+export type { LendingProtocol, HealthMetrics, DebtInfo, BorrowResult, RepayResult } from "./protocols/lending.js";
+export { MockDexProtocol } from "./protocols/dex.js";
+export type { DexProtocol, SwapQuote, SwapResult, TradingPair, ExchangeRate } from "./protocols/dex.js";
