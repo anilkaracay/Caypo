@@ -28,3 +28,24 @@ export type {
   TransactionTree,
   TransactionTreeEvent,
 } from "./types.js";
+export {
+  addAmounts,
+  compareAmounts,
+  isValidAmount,
+  subtractAmounts,
+  toCantonAmount,
+} from "./amount.js";
+export {
+  InsufficientBalanceError,
+  selectHoldings,
+  type HoldingSelection,
+  type USDCxHolding,
+} from "./holdings.js";
+export {
+  USDCxService,
+  USDCX_HOLDING_TEMPLATE_ID,
+  USDCX_INSTRUMENT_ID,
+  TRANSFER_FACTORY_TEMPLATE_ID,
+  type TransferParams,
+  type TransferResult,
+} from "./usdcx.js";

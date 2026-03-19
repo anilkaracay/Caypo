@@ -40,3 +40,25 @@ export type {
   TransactionTree,
   TransactionTreeEvent,
 } from "./canton/types.js";
+
+// USDCx operations
+export {
+  USDCxService,
+  USDCX_HOLDING_TEMPLATE_ID,
+  USDCX_INSTRUMENT_ID,
+  TRANSFER_FACTORY_TEMPLATE_ID,
+} from "./canton/usdcx.js";
+export type { TransferParams, TransferResult } from "./canton/usdcx.js";
+
+// Amount utilities (string-based decimal arithmetic)
+export {
+  addAmounts,
+  compareAmounts,
+  isValidAmount,
+  subtractAmounts,
+  toCantonAmount,
+} from "./canton/amount.js";
+
+// Holding selection
+export { InsufficientBalanceError, selectHoldings } from "./canton/holdings.js";
+export type { HoldingSelection, USDCxHolding } from "./canton/holdings.js";
