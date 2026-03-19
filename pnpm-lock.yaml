@@ -30,6 +30,22 @@ importers:
         specifier: ^3.1.0
         version: 3.2.4(@types/node@20.19.37)
 
+  apps/gateway-server:
+    dependencies:
+      '@caypo/canton-gateway':
+        specifier: workspace:*
+        version: link:../../packages/gateway
+      '@hono/node-server':
+        specifier: ^1.14.0
+        version: 1.19.11(hono@4.12.8)
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.8.0
+        version: 5.9.3
+
   packages/cli:
     dependencies:
       '@caypo/canton-sdk':
@@ -66,6 +82,9 @@ importers:
       '@caypo/mpp-canton':
         specifier: workspace:*
         version: link:../mpp
+      hono:
+        specifier: ^4.7.0
+        version: 4.12.8
     devDependencies:
       tsup:
         specifier: ^8.4.0

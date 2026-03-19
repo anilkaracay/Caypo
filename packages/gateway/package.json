@@ -20,7 +20,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@caypo/mpp-canton": "workspace:*"
+    "@caypo/mpp-canton": "workspace:*",
+    "hono": "^4.7.0"
   },
   "devDependencies": {
     "tsup": "^8.4.0",
