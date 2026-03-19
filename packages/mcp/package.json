@@ -1,7 +1,11 @@
 {
   "name": "@caypo/canton-mcp",
   "version": "0.1.0",
-  "description": "MCP server for Canton Network agent — 33 tools + 20 prompts",
+  "description": "MCP server connecting Canton Network to Claude Desktop, Cursor, and Windsurf — 33 tools, 20 prompts",
+  "keywords": ["canton", "mcp", "ai-agents", "claude", "cursor", "windsurf", "payments", "usdcx", "model-context-protocol"],
+  "author": "Cayvox Labs <anil@cayvox.com>",
+  "homepage": "https://github.com/anilkaracay/Caypo/tree/main/packages/mcp",
+  "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git", "directory": "packages/mcp" },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

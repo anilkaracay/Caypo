@@ -1,7 +1,11 @@
 {
   "name": "@caypo/mpp-canton",
   "version": "0.1.0",
-  "description": "MPP payment method for Canton Network (CIP-56 TransferPreapproval)",
+  "description": "Canton Network payment method for the Machine Payments Protocol (MPP) — accept and make USDCx payments in any HTTP API",
+  "keywords": ["canton", "mpp", "payments", "ai-agents", "stablecoin", "usdcx", "blockchain", "machine-payments", "stripe", "tempo"],
+  "author": "Cayvox Labs <anil@cayvox.com>",
+  "homepage": "https://github.com/anilkaracay/Caypo/tree/main/packages/mpp",
+  "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git", "directory": "packages/mpp" },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

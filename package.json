@@ -1,6 +1,12 @@
 {
   "name": "caypo",
   "private": true,
+  "description": "A bank account for AI agents on Canton Network",
+  "author": "Cayvox Labs <anil@cayvox.com>",
+  "homepage": "https://github.com/anilkaracay/Caypo",
+  "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git" },
+  "bugs": "https://github.com/anilkaracay/Caypo/issues",
+  "license": "(Apache-2.0 OR MIT)",
   "packageManager": "pnpm@10.32.0",
   "scripts": {
     "build": "turbo run build",

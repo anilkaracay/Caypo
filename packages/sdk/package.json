@@ -1,7 +1,11 @@
 {
   "name": "@caypo/canton-sdk",
   "version": "0.1.0",
-  "description": "Core SDK for Canton Network — JSON Ledger API v2 client, USDCx operations, agent accounts",
+  "description": "Core SDK for AI agent banking on Canton Network — USDCx transfers, encrypted wallets, safeguards, and MPP auto-pay",
+  "keywords": ["canton", "sdk", "payments", "ai-agents", "stablecoin", "usdcx", "blockchain", "machine-payments", "wallet", "defi"],
+  "author": "Cayvox Labs <anil@cayvox.com>",
+  "homepage": "https://github.com/anilkaracay/Caypo/tree/main/packages/sdk",
+  "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git", "directory": "packages/sdk" },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
