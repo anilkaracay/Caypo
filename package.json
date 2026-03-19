@@ -1,0 +1,21 @@
+{
+  "name": "caypo",
+  "private": true,
+  "packageManager": "pnpm@10.32.0",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.0",
+    "eslint": "^9.24.0",
+    "prettier": "^3.5.0",
+    "@types/node": "^20.17.0"
+  }
+}

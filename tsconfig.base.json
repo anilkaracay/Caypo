@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "paths": {
+      "@caypo/mpp-canton": ["./packages/mpp/src/index.ts"],
+      "@caypo/canton-sdk": ["./packages/sdk/src/index.ts"],
+      "@caypo/canton-cli": ["./packages/cli/src/index.ts"],
+      "@caypo/canton-mcp": ["./packages/mcp/src/index.ts"],
+      "@caypo/canton-gateway": ["./packages/gateway/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
