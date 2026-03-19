@@ -5,6 +5,9 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "caypo-mcp": "./dist/index.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -20,7 +23,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@caypo/canton-sdk": "workspace:*"
+    "@caypo/canton-sdk": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.12.0"
   },
   "devDependencies": {
     "tsup": "^8.4.0",
