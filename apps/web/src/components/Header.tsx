@@ -35,7 +35,7 @@ export default function Header() {
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { label: "Docs", href: "/docs" },
+            { label: "Docs", href: "https://github.com/anilkaracay/Caypo/tree/main/docs", external: true },
             {
               label: "GitHub",
               href: "https://github.com/anilkaracay/Caypo",
@@ -62,7 +62,7 @@ export default function Header() {
 
         {/* CTA */}
         <a
-          href="/docs/getting-started"
+          href="/gateway"
           className="text-sm font-medium px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
           style={{
             boxShadow: "none",
