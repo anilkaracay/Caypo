@@ -79,3 +79,19 @@ export type {
 // Safeguards
 export { SafeguardManager } from "./safeguards/manager.js";
 export type { SafeguardConfig, CheckResult } from "./safeguards/manager.js";
+
+// High-level agent
+export { CantonAgent } from "./agent.js";
+export type { CantonAgentConfig, WalletInfo } from "./agent.js";
+
+// Checking account
+export { CheckingAccount } from "./accounts/checking.js";
+export type { SendOptions, TransactionRecord } from "./accounts/checking.js";
+
+// Traffic manager
+export { TrafficManager } from "./traffic/manager.js";
+export type { TrafficBalance, AutoPurchaseConfig } from "./traffic/manager.js";
+
+// MPP pay client
+export { MppPayClient, parseWwwAuthenticate } from "./mpp/pay-client.js";
+export type { PayOptions, PayResult, PaymentChallenge } from "./mpp/pay-client.js";
