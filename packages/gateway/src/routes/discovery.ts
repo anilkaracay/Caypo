@@ -9,7 +9,7 @@ export function registerDiscoveryRoutes(app: Hono): void {
   // JSON service catalog
   app.get("/api/services", (c) => {
     return c.json({
-      gateway: "mpp.cayvox.io",
+      gateway: "mpp.caypo.xyz",
       protocol: "MPP (Micropayment Protocol)",
       paymentMethod: "canton",
       totalServices: services.length,

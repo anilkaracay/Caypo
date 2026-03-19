@@ -45,9 +45,9 @@ No API keys needed. Agents pay per request with USDCx on Canton Network via the 
 ## Discovery
 
 ```bash
-curl https://mpp.cayvox.io/api/services   # JSON catalog
-curl https://mpp.cayvox.io/llms.txt       # Agent discovery
-curl https://mpp.cayvox.io/health          # Health check
+curl https://mpp.caypo.xyz/api/services   # JSON catalog
+curl https://mpp.caypo.xyz/llms.txt       # Agent discovery
+curl https://mpp.caypo.xyz/health          # Health check
 ```
 
 ## Use as Library

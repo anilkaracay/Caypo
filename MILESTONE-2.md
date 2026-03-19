@@ -15,7 +15,7 @@
 - [ ] Add streaming response support for long-running tools
 
 ### 2. Gateway Live Deployment
-- [ ] Deploy gateway to mpp.cayvox.io (Cherry VPS, Caddy reverse proxy)
+- [ ] Deploy gateway to mpp.caypo.xyz (Cherry VPS, Caddy reverse proxy)
 - [ ] Configure all 17 API keys in production env
 - [ ] Set up TransferPreapproval for gateway party on Canton DevNet
 - [ ] Verify full 402 → payment → proxy flow end-to-end
@@ -24,7 +24,7 @@
 - [ ] Monitoring and alerting (uptime, error rates, payment volume)
 
 ### 3. Agent Skills
-- [ ] Publish caypo-agent-skills package (npx skills add cayvox-labs/caypo-agent-skills)
+- [ ] Publish caypo-agent-skills package (npx skills add anilkaracay/Caypo-agent-skills)
 - [ ] 10 skills: check-balance, send, save, withdraw, exchange, borrow, repay, pay, sentinel, rebalance
 - [ ] Compatible with: Claude Code, OpenAI Codex, GitHub Copilot, Cursor, Windsurf, Amp
 - [ ] Test with Claude Code in real project
@@ -37,7 +37,7 @@
 - [ ] CC (Canton Coin) balance tracking
 
 ### 5. Landing Page
-- [ ] Domain: caypo.dev or cantonagent.xyz
+- [ ] Domain: caypo.dev or caypo.xyz
 - [ ] Next.js site with pages: Home, Accounts, MPP, Gateway, Docs, Demo
 - [ ] Interactive terminal demo (asciinema or custom)
 - [ ] API documentation (generated from TypeScript types)

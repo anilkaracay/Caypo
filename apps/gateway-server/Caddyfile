@@ -1,0 +1,22 @@
+mpp.caypo.xyz {
+    reverse_proxy localhost:3000
+
+    encode gzip
+
+    header {
+        Access-Control-Allow-Origin *
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type, Authorization, Accept"
+        Access-Control-Expose-Headers "Payment-Receipt, WWW-Authenticate, X-Upstream-Status"
+        X-Powered-By "CAYPO Gateway"
+    }
+
+    handle /health {
+        reverse_proxy localhost:3000
+    }
+
+    log {
+        output file /var/log/caddy/mpp-gateway.log
+        format json
+    }
+}

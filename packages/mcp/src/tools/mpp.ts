@@ -69,7 +69,7 @@ export function mppTools(agent: CantonAgent): ToolDef[] {
           {
             type: "text",
             text: JSON.stringify({
-              gateway: "mpp.cayvox.io",
+              gateway: "mpp.caypo.xyz",
               services: [
                 { name: "OpenAI", path: "/openai", price: "$0.001-$0.05" },
                 { name: "Anthropic", path: "/anthropic", price: "$0.01" },

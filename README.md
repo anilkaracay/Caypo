@@ -72,7 +72,7 @@ caypo balance
 caypo send 10.00 to Bob::1220abcdef...
 
 # Pay for an API call (auto-handles 402 flow)
-caypo pay https://mpp.cayvox.io/openai/v1/chat/completions --max-price 0.05
+caypo pay https://mpp.caypo.xyz/openai/v1/chat/completions --max-price 0.05
 
 # Install MCP server for Claude Desktop
 caypo mcp install
@@ -109,7 +109,7 @@ const agent = await CantonAgent.create();
 const { available } = await agent.checking.balance();
 
 // Pay for an API call (automatic 402 handling)
-const result = await agent.mpp.pay("https://mpp.cayvox.io/openai/v1/chat/completions", {
+const result = await agent.mpp.pay("https://mpp.caypo.xyz/openai/v1/chat/completions", {
   method: "POST",
   body: JSON.stringify({ model: "gpt-4o", messages: [{ role: "user", content: "Hello" }] }),
   maxPrice: "0.05",

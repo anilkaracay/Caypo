@@ -34,7 +34,7 @@ const tx = await agent.checking.send("Bob::1220...", "10.00");
 console.log(`Sent! Update ID: ${tx.updateId}`);
 
 // Pay for API call (handles 402 automatically)
-const result = await agent.mpp.pay("https://mpp.cayvox.io/openai/v1/chat/completions", {
+const result = await agent.mpp.pay("https://mpp.caypo.xyz/openai/v1/chat/completions", {
   method: "POST",
   body: JSON.stringify({ model: "gpt-4o", messages: [{ role: "user", content: "Hello" }] }),
   maxPrice: "0.05",

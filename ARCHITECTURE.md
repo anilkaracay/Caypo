@@ -48,7 +48,7 @@
 ## MPP Payment Flow (Verified)
 
 ```
-1. Agent → POST mpp.cayvox.io/openai/v1/chat/completions
+1. Agent → POST mpp.caypo.xyz/openai/v1/chat/completions
 2. Gateway → 402 + WWW-Authenticate: Payment method="canton" ...
 3. Agent SDK:
    a. Parse challenge (amount, recipient party, network)
@@ -58,7 +58,7 @@
       (works because gateway has TransferPreapproval active)
    e. Receive { updateId, completionOffset }
    f. Build credential with updateId + completionOffset + sender + commandId
-4. Agent → POST mpp.cayvox.io/openai/v1/chat/completions + Authorization: Payment <credential>
+4. Agent → POST mpp.caypo.xyz/openai/v1/chat/completions + Authorization: Payment <credential>
 5. Gateway:
    a. Extract updateId from credential
    b. Fetch transaction via /v2/updates/transaction-by-id/{updateId}

@@ -5,12 +5,17 @@
 
 import { serve } from "@hono/node-server";
 import { app } from "@caypo/canton-gateway";
+import { getMetrics } from "./metrics.js";
+
+// Register metrics endpoint on the app
+app.get("/metrics", (c) => c.json(getMetrics()));
 
 const PORT = parseInt(process.env.PORT ?? "3000", 10);
 
 serve({ fetch: app.fetch, port: PORT }, (info) => {
   console.log(`CAYPO MPP Gateway running on http://localhost:${info.port}`);
-  console.log(`  Health: http://localhost:${info.port}/health`);
-  console.log(`  Services: http://localhost:${info.port}/api/services`);
+  console.log(`  Health:    http://localhost:${info.port}/health`);
+  console.log(`  Services:  http://localhost:${info.port}/api/services`);
   console.log(`  Discovery: http://localhost:${info.port}/llms.txt`);
+  console.log(`  Metrics:   http://localhost:${info.port}/metrics`);
 });

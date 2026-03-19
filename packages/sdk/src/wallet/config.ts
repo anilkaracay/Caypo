@@ -53,7 +53,7 @@ export const DEFAULT_CONFIG: AgentConfig = {
     dailyLimit: "1000",
   },
   mpp: {
-    gatewayUrl: "https://mpp.cayvox.io",
+    gatewayUrl: "https://mpp.caypo.xyz",
     maxAutoPayPrice: "1.00",
   },
 };

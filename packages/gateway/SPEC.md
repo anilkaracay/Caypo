@@ -1,6 +1,6 @@
 # @cayvox/canton-gateway — MPP API Gateway (Production)
 
-## URL: mpp.cayvox.io
+## URL: mpp.caypo.xyz
 
 ## CRITICAL: Gateway TransferPreapproval
 
@@ -36,4 +36,4 @@ Setup: Exercise the preapproval creation via the validator API or Ledger API. Re
 - `GET /health` — Health check
 
 ## Implementation: Hono framework with mppx middleware
-## Deployment: Docker on Cherry VPS, Caddy reverse proxy, mpp.cayvox.io
+## Deployment: Docker on Cherry VPS, Caddy reverse proxy, mpp.caypo.xyz

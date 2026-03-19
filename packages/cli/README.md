@@ -76,7 +76,7 @@ $ caypo balance
 ### Pay for an API call
 
 ```
-$ caypo pay https://mpp.cayvox.io/openai/v1/chat/completions --max-price 0.05
+$ caypo pay https://mpp.caypo.xyz/openai/v1/chat/completions --max-price 0.05
 
   [OK] Paid 0.01 USDCx for API access
   Update ID: upd-abc123

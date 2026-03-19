@@ -3,7 +3,7 @@
 ## 10 Skills (matching t2000-skills)
 
 ```bash
-npx skills add cayvox-labs/canton-agent-skills
+npx skills add anilkaracay/canton-agent-skills
 ```
 
 ### Skills

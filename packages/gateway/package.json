@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "MPP API gateway for Canton Network — pay-per-request access to OpenAI, Anthropic, and 15+ services with USDCx",
   "keywords": ["canton", "gateway", "mpp", "payments", "ai-agents", "openai", "anthropic", "api-proxy", "usdcx", "hono"],
-  "author": "Cayvox Labs <anil@cayvox.com>",
+  "author": "Cayvox Labs <dev@caypo.xyz>",
   "homepage": "https://github.com/anilkaracay/Caypo/tree/main/packages/gateway",
   "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git", "directory": "packages/gateway" },
   "type": "module",
