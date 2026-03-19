@@ -1,11 +1,12 @@
 {
   "name": "@caypo/canton-cli",
   "version": "0.1.0",
-  "description": "CLI tool for Canton Network agent — canton-agent command",
+  "description": "CLI tool for Canton Network agent — caypo command",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
+    "caypo": "./dist/index.js",
     "canton-agent": "./dist/index.js",
     "ca": "./dist/index.js"
   },
@@ -24,9 +25,14 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@caypo/canton-sdk": "workspace:*"
+    "@caypo/canton-sdk": "workspace:*",
+    "commander": "^13.1.0",
+    "chalk": "^5.4.0",
+    "ora": "^8.2.0",
+    "inquirer": "^12.6.0"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.7",
     "tsup": "^8.4.0",
     "typescript": "^5.8.0",
     "vitest": "^3.1.0"

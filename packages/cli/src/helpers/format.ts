@@ -1,0 +1,29 @@
+/**
+ * CLI formatting helpers.
+ */
+
+import chalk from "chalk";
+
+export const label = (text: string) => chalk.gray(text);
+export const value = (text: string) => chalk.white.bold(text);
+export const success = (text: string) => chalk.green(text);
+export const warn = (text: string) => chalk.yellow(text);
+export const fail = (text: string) => chalk.red(text);
+export const accent = (text: string) => chalk.cyan(text);
+export const dim = (text: string) => chalk.dim(text);
+
+export function banner(): void {
+  console.log(chalk.cyan.bold("\n  CAYPO") + chalk.gray(" — A bank account for AI agents on Canton Network\n"));
+}
+
+export function keyValue(key: string, val: string): void {
+  console.log(`  ${label(key + ":")} ${value(val)}`);
+}
+
+export function errorMessage(msg: string): void {
+  console.log(`\n  ${fail("✗")} ${msg}\n`);
+}
+
+export function successMessage(msg: string): void {
+  console.log(`\n  ${success("✓")} ${msg}\n`);
+}
