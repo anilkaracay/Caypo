@@ -1,46 +1,76 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { FLOW_STEPS } from "@/lib/constants";
+
+const stepVariant = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, delay: i * 0.12, ease: "easeOut" as const },
+  }),
+};
 
 export default function HowItWorks() {
   return (
     <section className="py-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        {/* Section header */}
-        <div className="mb-16 text-center">
-          <p className="text-sm text-accent font-mono mb-3">How it works</p>
-          <h2 className="font-display text-4xl lg:text-5xl text-foreground tracking-tight">
-            How agents pay with CAYPO
+      <div className="max-w-2xl mx-auto">
+        {/* Header — left aligned */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-sans font-semibold text-foreground">
+            How agents pay{" "}
+            <span className="font-[family-name:var(--font-instrument-serif)] italic text-accent">
+              with CAYPO
+            </span>
           </h2>
         </div>
 
-        {/* Steps */}
-        <div className="relative">
-          {/* Vertical connector line */}
-          <div className="absolute left-[19px] top-8 bottom-8 w-px bg-border" aria-hidden />
+        {/* Timeline */}
+        <div className="relative ml-6">
+          {/* Vertical line */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-px bg-border"
+            aria-hidden
+          />
+          {/* Animated dot */}
+          <div
+            className="absolute left-[-2.5px] w-[6px] h-[6px] rounded-full bg-accent"
+            style={{ animation: "flow-down 3s infinite" }}
+            aria-hidden
+          />
 
-          <ol className="flex flex-col gap-0">
+          <div className="flex flex-col gap-8">
             {FLOW_STEPS.map((step, index) => {
-              const isHighlighted = step.num === "03";
+              const isHighlighted = index === 2;
               return (
-                <li key={step.num} className="relative flex gap-6 pb-10 last:pb-0">
-                  {/* Number circle */}
+                <motion.div
+                  key={step.num}
+                  custom={index}
+                  variants={stepVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  className="relative pl-10"
+                >
+                  {/* Number circle on the timeline */}
                   <div
                     className={[
-                      "relative z-10 flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center",
-                      "font-mono text-xs font-medium",
+                      "absolute left-[-16px] w-8 h-8 rounded-full border flex items-center justify-center text-sm font-[family-name:var(--font-geist-mono)]",
                       isHighlighted
-                        ? "border-accent bg-accent text-white"
-                        : "border-accent text-accent bg-background",
+                        ? "border-accent bg-accent text-background"
+                        : "border-border bg-background text-muted",
                     ].join(" ")}
                   >
                     {step.num}
                   </div>
 
-                  {/* Content */}
+                  {/* Card */}
                   <div
                     className={[
-                      "flex-1 rounded-xl p-5 border",
+                      "rounded-xl p-5 border",
                       isHighlighted
-                        ? "border-accent bg-accent/10"
+                        ? "border-accent/30 bg-accent/5"
                         : "border-border bg-surface",
                     ].join(" ")}
                   >
@@ -52,14 +82,14 @@ export default function HowItWorks() {
                     >
                       {step.title}
                     </p>
-                    <code className="font-mono text-xs text-muted break-all">
+                    <div className="bg-[#0a0a0a] rounded-lg p-3 font-[family-name:var(--font-geist-mono)] text-sm text-muted overflow-x-auto">
                       {step.code}
-                    </code>
+                    </div>
                   </div>
-                </li>
+                </motion.div>
               );
             })}
-          </ol>
+          </div>
         </div>
       </div>
     </section>

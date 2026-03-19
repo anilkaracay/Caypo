@@ -17,8 +17,8 @@ function useCountUp(target: number, duration: number, active: boolean) {
     const step = (timestamp: number) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      // easeOutExpo
-      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      // easeOut
+      const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * target));
       if (progress < 1) raf = requestAnimationFrame(step);
     };
@@ -30,40 +30,51 @@ function useCountUp(target: number, duration: number, active: boolean) {
   return count;
 }
 
-function StatCard({ value, label }: { value: string; label: string }) {
+function StatCell({
+  value,
+  label,
+  isLast,
+}: {
+  value: string;
+  label: string;
+  isLast: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const numericTarget = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
-  const count = useCountUp(numericTarget, 1400, isInView);
+  const count = useCountUp(numericTarget, 1500, isInView);
 
   return (
-    <div ref={ref} className="flex flex-col items-center gap-1 py-6 px-4">
-      <span className="font-mono text-3xl font-medium text-foreground">
+    <div
+      ref={ref}
+      className={[
+        "py-10 px-6 text-center",
+        isLast ? "" : "border-r border-border",
+      ].join(" ")}
+    >
+      <span
+        className="text-4xl lg:text-5xl font-[family-name:var(--font-instrument-serif)] tracking-tight text-foreground block"
+        style={{ fontVariantNumeric: "tabular-nums" }}
+      >
         {isInView ? count : 0}
       </span>
-      <span className="text-sm text-muted text-center leading-snug">{label}</span>
+      <span className="text-sm text-muted mt-2 block">{label}</span>
     </div>
   );
 }
 
 export default function Numbers() {
   return (
-    <section className="py-24 px-6 border-y border-border">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12 text-center">
-          <p className="text-sm text-accent font-mono mb-3">By the numbers</p>
-          <h2 className="font-display text-4xl lg:text-5xl text-foreground tracking-tight">
-            Built to ship
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-px bg-border rounded-xl overflow-hidden">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="bg-background">
-              <StatCard value={stat.value} label={stat.label} />
-            </div>
-          ))}
-        </div>
+    <section className="border-y border-border">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {STATS.map((stat, i) => (
+          <StatCell
+            key={stat.label}
+            value={stat.value}
+            label={stat.label}
+            isLast={i === STATS.length - 1}
+          />
+        ))}
       </div>
     </section>
   );

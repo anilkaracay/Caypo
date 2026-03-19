@@ -12,8 +12,8 @@ interface RenderedLine {
   done: boolean;
 }
 
-const CMD_CHAR_DELAY = 30; // ms per character for cmd lines
-const OUT_APPEAR_DELAY = 200; // ms before an out/gap line appears
+const CMD_CHAR_DELAY = 30;
+const OUT_APPEAR_DELAY = 200;
 
 export default function AgentDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,11 +32,10 @@ export default function AgentDemo() {
     setRendered([]);
     setPlaying(true);
 
-    let cursor = 0; // cumulative ms
+    let cursor = 0;
 
-    TERMINAL_LINES.forEach((line, lineIndex) => {
+    TERMINAL_LINES.forEach((line) => {
       if (line.type === "gap") {
-        // Gap line: just add a blank entry after a small pause
         cursor += 80;
         const t = setTimeout(() => {
           setRendered((prev) => [
@@ -61,7 +60,7 @@ export default function AgentDemo() {
       }
 
       // cmd: type char by char
-      cursor += 120; // brief pause before each cmd
+      cursor += 120;
       const chars = line.text.split("");
       chars.forEach((_, charIdx) => {
         const charCursor = cursor + charIdx * CMD_CHAR_DELAY;
@@ -86,12 +85,10 @@ export default function AgentDemo() {
       cursor += chars.length * CMD_CHAR_DELAY;
     });
 
-    // Mark playing done
     const done = setTimeout(() => setPlaying(false), cursor + 100);
     timeoutsRef.current.push(done);
   };
 
-  // Auto-play when scrolled into view
   useEffect(() => {
     if (isInView) play();
     return clearTimeouts;
@@ -103,40 +100,32 @@ export default function AgentDemo() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
-        {/* Section header */}
-        <div className="mb-12 text-center">
-          <p className="text-sm text-accent font-mono mb-3">Live demo</p>
-          <h2 className="font-display text-4xl lg:text-5xl text-foreground tracking-tight">
-            See it in action
-          </h2>
-        </div>
-
         {/* Terminal window */}
         <div
           ref={ref}
-          className="rounded-xl border border-border bg-[#0D0D0D] overflow-hidden shadow-2xl"
+          className="bg-[#0D0D0D] border border-border rounded-xl overflow-hidden"
         >
-          {/* Title bar */}
+          {/* Header bar */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
               <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
               <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
-              <span className="ml-3 text-xs text-muted font-mono">Terminal</span>
+              <span className="ml-2 text-xs text-muted">Terminal</span>
             </div>
             <button
               onClick={handleRestart}
-              className="text-xs text-muted hover:text-foreground transition-colors duration-200 font-mono"
+              className="text-xs text-muted hover:text-foreground transition-colors duration-200 cursor-pointer"
             >
               Restart
             </button>
           </div>
 
           {/* Body */}
-          <div className="p-5 min-h-[340px] font-mono text-sm leading-relaxed">
+          <div className="p-5 min-h-[340px] font-[family-name:var(--font-geist-mono)] text-sm leading-relaxed">
             {rendered.map((r, i) => {
               if (r.line.type === "gap") {
-                return <div key={i} className="h-4" />;
+                return <div key={i} className="mb-3" />;
               }
               const isCurrentCmd =
                 r.line.type === "cmd" && !r.done && i === rendered.length - 1;
@@ -150,19 +139,35 @@ export default function AgentDemo() {
                     {r.displayText}
                   </span>
                   {isCurrentCmd && (
-                    <span className="ml-0.5 animate-blink text-foreground">▌</span>
+                    <span className="ml-0.5 animate-blink text-foreground">
+                      |
+                    </span>
                   )}
                 </div>
               );
             })}
-            {/* Idle cursor at the very end */}
+            {/* Idle cursor */}
             {!playing && rendered.length > 0 && (
               <div className="flex items-center mt-1">
                 <span className="text-muted">$ </span>
-                <span className="ml-0.5 animate-blink text-foreground">▌</span>
+                <span className="ml-0.5 animate-blink text-foreground">|</span>
               </div>
             )}
           </div>
+        </div>
+
+        {/* Context pills */}
+        <div className="flex flex-wrap gap-3 justify-center mt-6">
+          {["Try with Claude Code", "Try with Cursor", "Try with CLI"].map(
+            (label) => (
+              <span
+                key={label}
+                className="bg-surface border border-border rounded-full px-4 py-2 text-xs text-muted"
+              >
+                {label}
+              </span>
+            )
+          )}
         </div>
       </div>
     </section>

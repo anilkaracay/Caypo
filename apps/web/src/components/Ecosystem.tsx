@@ -1,76 +1,99 @@
 import { SERVICES } from "@/lib/constants";
 
 const AI_PLATFORMS = [
-  { name: "Claude Code", type: "MCP + Skills" },
-  { name: "Claude Desktop", type: "MCP Server" },
-  { name: "Cursor", type: "MCP Server" },
-  { name: "OpenAI Codex", type: "SDK + CLI" },
-  { name: "GitHub Copilot", type: "Skills" },
-  { name: "Windsurf", type: "MCP Server" },
+  { name: "Claude Code", badge: "Agent Skills", color: "emerald" as const },
+  { name: "Claude Desktop", badge: "MCP Server", color: "blue" as const },
+  { name: "Cursor", badge: "MCP Server", color: "blue" as const },
+  { name: "OpenAI Codex", badge: "Agent Skills", color: "emerald" as const },
+  { name: "GitHub Copilot", badge: "Agent Skills", color: "emerald" as const },
+  { name: "Windsurf", badge: "MCP Server", color: "blue" as const },
+];
+
+const BADGE_STYLES = {
+  blue: "bg-[rgba(59,130,246,0.1)] text-accent",
+  emerald: "bg-[rgba(16,185,129,0.1)] text-emerald",
+  purple: "bg-[rgba(168,85,247,0.1)] text-purple-400",
+};
+
+const SERVICE_CATEGORIES = [
+  {
+    label: "LLMs",
+    items: ["OpenAI", "Anthropic", "Google Gemini", "Groq", "DeepSeek", "Together AI", "Perplexity"],
+  },
+  {
+    label: "Media",
+    items: ["fal.ai", "ElevenLabs"],
+  },
+  {
+    label: "Search",
+    items: ["Brave Search", "Firecrawl"],
+  },
+  {
+    label: "Tools",
+    items: ["Resend", "OpenWeather", "Google Maps", "Judge0", "Reloadly", "Lob"],
+  },
 ];
 
 export default function Ecosystem() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
-        <div className="mb-16 text-center">
-          <p className="text-sm text-accent font-mono mb-3">Ecosystem</p>
-          <h2 className="font-display text-4xl lg:text-5xl text-foreground tracking-tight">
-            Plug into every platform
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left: AI platforms */}
-          <div>
-            <h3 className="text-lg font-medium text-foreground mb-6">
+        <div className="lg:grid lg:grid-cols-5 gap-12">
+          {/* Left column — 3 cols */}
+          <div className="lg:col-span-3 mb-12 lg:mb-0">
+            <h2 className="text-2xl font-semibold text-foreground mb-8">
               Works with every AI platform
-            </h3>
-            <ul className="flex flex-col gap-3">
-              {AI_PLATFORMS.map((platform) => (
-                <li
-                  key={platform.name}
-                  className="flex items-center justify-between rounded-lg border border-border bg-surface px-4 py-3"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-emerald text-base leading-none">✓</span>
-                    <span className="text-sm text-foreground font-medium">
-                      {platform.name}
-                    </span>
-                  </div>
-                  <span className="text-xs text-muted font-mono">{platform.type}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right: Gateway services */}
-          <div>
-            <h3 className="text-lg font-medium text-foreground mb-2">
-              Gateway Services
-            </h3>
-            <p className="text-sm text-muted mb-6">
-              <span className="font-mono text-foreground">mpp.caypo.xyz</span>
-              {" "}— 17 services, 46 endpoints
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
-              {SERVICES.map((service) => (
+            </h2>
+            <div>
+              {AI_PLATFORMS.map((platform, i) => (
                 <div
-                  key={service}
-                  className="rounded-lg border border-border bg-surface px-3 py-2 text-xs text-muted font-mono text-center"
+                  key={platform.name}
+                  className={`flex items-center gap-3 py-3 ${
+                    i < AI_PLATFORMS.length - 1
+                      ? "border-b border-border/50"
+                      : ""
+                  }`}
                 >
-                  {service}
+                  <span className="text-emerald text-sm">&#10003;</span>
+                  <span className="font-medium text-foreground text-sm flex-1">
+                    {platform.name}
+                  </span>
+                  <span
+                    className={`text-xs px-2.5 py-0.5 rounded-full ${BADGE_STYLES[platform.color]}`}
+                  >
+                    {platform.badge}
+                  </span>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Right column — 2 cols */}
+          <div className="lg:col-span-2">
+            <p className="text-xs uppercase tracking-[0.15em] text-muted mb-1">
+              GATEWAY
+            </p>
+            <p className="text-2xl font-[family-name:var(--font-geist-mono)] font-bold text-foreground">
+              17 services
+            </p>
+            <p className="text-muted mb-6">46 endpoints</p>
+
+            {SERVICE_CATEGORIES.map((category) => (
+              <div key={category.label} className="mb-4">
+                <p className="text-xs text-muted uppercase tracking-wide mb-2">
+                  {category.label}
+                </p>
+                <p className="text-sm text-muted">
+                  {category.items.join(" \u00B7 ")}
+                </p>
+              </div>
+            ))}
 
             <a
               href="/docs/gateway"
-              className="text-sm text-accent hover:underline transition-colors"
+              className="inline-block mt-4 text-sm text-accent hover:underline"
             >
-              View all services →
+              View all services &rarr;
             </a>
           </div>
         </div>

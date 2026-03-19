@@ -6,7 +6,8 @@
   --surface: #12121A;
   --surface-hover: #1A1A25;
   --accent: #3B82F6;
-  --accent-glow: #3B82F640;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --accent-glow-strong: rgba(59, 130, 246, 0.3);
   --emerald: #10B981;
   --muted: #94A3B8;
   --border: #1E293B;
@@ -34,26 +35,54 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+html { scroll-behavior: smooth; }
 ::selection { background: var(--accent); color: white; }
 
+/* Ticker */
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 .animate-ticker { animation: ticker 50s linear infinite; }
 
-@keyframes breathe {
-  0%, 100% { box-shadow: 0 0 0 1px var(--accent-glow); }
-  50% { box-shadow: 0 0 12px 2px var(--accent-glow); }
+/* Hero glow */
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
 }
-.animate-breathe { animation: breathe 3s ease-in-out infinite; }
 
+/* Spinning badge border */
+@property --badge-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-badge {
+  to { --badge-angle: 360deg; }
+}
+
+/* Pulse for ticker dots */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Blinking cursor */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-.animate-blink { animation: blink 1s step-end infinite; }
+.animate-blink { animation: blink 1.06s step-end infinite; }
 
+/* Timeline dot flow */
+@keyframes flow-down {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
