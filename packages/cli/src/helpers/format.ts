@@ -27,3 +27,11 @@ export function errorMessage(msg: string): void {
 export function successMessage(msg: string): void {
   console.log(`\n  ${success("✓")} ${msg}\n`);
 }
+
+export function line(width = 36): void {
+  console.log(chalk.gray("  " + "─".repeat(width)));
+}
+
+export function sectionHeader(title: string): void {
+  console.log(chalk.white.bold(`\n  ${title}\n`));
+}

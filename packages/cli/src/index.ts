@@ -4,7 +4,6 @@
  */
 
 import { Command } from "commander";
-import { CANTON_SDK_VERSION } from "@caypo/canton-sdk";
 
 import { initCommand } from "./commands/init.js";
 import { balanceCommand } from "./commands/balance.js";
@@ -14,6 +13,11 @@ import { addressCommand } from "./commands/address.js";
 import { safeguardsCommand } from "./commands/safeguards.js";
 import { trafficCommand } from "./commands/traffic.js";
 import { mcpCommand } from "./commands/mcp.js";
+import { saveCommand, withdrawCommand, rebalanceCommand, earningsCommand } from "./commands/savings.js";
+import { borrowCommand, repayCommand, healthCommand } from "./commands/credit.js";
+import { exchangeCommand, ratesCommand } from "./commands/exchange.js";
+import { investCommand, portfolioCommand, positionsCommand } from "./commands/invest.js";
+import { claimRewardsCommand } from "./commands/rewards.js";
 
 export const CANTON_CLI_VERSION = "0.1.0";
 
@@ -23,11 +27,32 @@ program
   .name("caypo")
   .description("CAYPO — A bank account for AI agents on Canton Network")
   .version(CANTON_CLI_VERSION, "-v, --version")
+  // Setup
   .addCommand(initCommand)
   .addCommand(balanceCommand)
+  .addCommand(addressCommand)
+  // Checking
   .addCommand(sendCommand)
   .addCommand(payCommand)
-  .addCommand(addressCommand)
+  // Savings
+  .addCommand(saveCommand)
+  .addCommand(withdrawCommand)
+  .addCommand(rebalanceCommand)
+  .addCommand(earningsCommand)
+  // Credit
+  .addCommand(borrowCommand)
+  .addCommand(repayCommand)
+  .addCommand(healthCommand)
+  // Exchange
+  .addCommand(exchangeCommand)
+  .addCommand(ratesCommand)
+  // Investment
+  .addCommand(investCommand)
+  .addCommand(portfolioCommand)
+  .addCommand(positionsCommand)
+  // Rewards
+  .addCommand(claimRewardsCommand)
+  // System
   .addCommand(safeguardsCommand)
   .addCommand(trafficCommand)
   .addCommand(mcpCommand);
