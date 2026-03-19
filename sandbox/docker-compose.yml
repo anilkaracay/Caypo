@@ -1,0 +1,30 @@
+version: "3.8"
+
+# Canton sandbox for CAYPO E2E testing.
+#
+# Canton 3.4+ (JSON Ledger API v2) enterprise images require Digital Asset access.
+# Canton Open Source 2.x uses JSON API v1 (/v1/* endpoints).
+#
+# For v2 API testing, use the binary approach: ./sandbox/setup-binary.sh
+# This Docker compose is provided as a fallback for v1 API or future public v2 images.
+
+services:
+  canton:
+    image: digitalasset/canton-open-source:2.10.3
+    ports:
+      - "7575:7575"   # JSON Ledger API
+      - "5011:5011"   # gRPC Ledger API
+    command: ["sandbox", "--json-api-port", "7575"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:7575/livez || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 30s
+    environment:
+      - JAVA_OPTS=-Xmx2g
+    volumes:
+      - canton-data:/canton/data
+
+volumes:
+  canton-data:

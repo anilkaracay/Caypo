@@ -2,7 +2,8 @@
  * Canton sandbox E2E test setup.
  *
  * Connects to a local Canton sandbox (http://localhost:7575) or a remote
- * node via CANTON_LEDGER_URL. Skips all E2E tests if no node is reachable.
+ * node via CANTON_LEDGER_URL. Detects available capabilities and skips
+ * tests that require unavailable features.
  */
 
 import { CantonClient } from "../../canton/client.js";
@@ -10,6 +11,13 @@ import { CantonClient } from "../../canton/client.js";
 export interface CantonConnection {
   ledgerUrl: string;
   isAvailable: boolean;
+}
+
+export interface CantonCapabilities {
+  cantonAvailable: boolean;
+  v2ApiAvailable: boolean;
+  partyCreation: boolean;
+  authRequired: boolean;
 }
 
 /**
@@ -23,6 +31,60 @@ export async function getCantonConnection(): Promise<CantonConnection> {
   } catch {
     return { ledgerUrl: url, isAvailable: false };
   }
+}
+
+/**
+ * Detect what the Canton node supports.
+ */
+export async function detectCapabilities(ledgerUrl: string): Promise<CantonCapabilities> {
+  const caps: CantonCapabilities = {
+    cantonAvailable: false,
+    v2ApiAvailable: false,
+    partyCreation: false,
+    authRequired: false,
+  };
+
+  try {
+    const res = await fetch(`${ledgerUrl}/livez`, { signal: AbortSignal.timeout(3000) });
+    caps.cantonAvailable = res.ok;
+  } catch {
+    return caps;
+  }
+
+  // Check v2 API
+  try {
+    const res = await fetch(`${ledgerUrl}/v2/state/ledger-end`, {
+      signal: AbortSignal.timeout(3000),
+    });
+    if (res.ok) {
+      caps.v2ApiAvailable = true;
+    } else if (res.status === 401 || res.status === 403) {
+      caps.v2ApiAvailable = true;
+      caps.authRequired = true;
+    }
+  } catch {
+    // v2 API not available
+  }
+
+  // Check party creation
+  if (caps.v2ApiAvailable && !caps.authRequired) {
+    try {
+      const res = await fetch(`${ledgerUrl}/v2/parties`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          partyIdHint: `cap-check-${Date.now()}`,
+          identityProviderId: "",
+        }),
+        signal: AbortSignal.timeout(5000),
+      });
+      caps.partyCreation = res.ok;
+    } catch {
+      // Party creation not available
+    }
+  }
+
+  return caps;
 }
 
 /**

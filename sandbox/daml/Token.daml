@@ -1,0 +1,43 @@
+-- | Simple token template for CAYPO E2E testing.
+-- Mimics CIP-56 Holding pattern with Transfer and Split choices.
+module Token where
+
+template Token
+  with
+    issuer : Party
+    owner : Party
+    amount : Decimal
+    name : Text
+  where
+    signatory issuer, owner
+    ensure amount > 0.0
+
+    -- Transfer to new owner (simplified 1-step, like TransferFactory_Transfer)
+    choice Transfer : ContractId Token
+      with
+        newOwner : Party
+        transferAmount : Decimal
+      controller owner
+      do
+        assert (transferAmount > 0.0 && transferAmount <= amount)
+        create Token with
+          issuer = issuer
+          owner = newOwner
+          amount = transferAmount
+          name = name
+
+    -- Split into two holdings (UTXO split)
+    choice Split : (ContractId Token, ContractId Token)
+      with
+        splitAmount : Decimal
+      controller owner
+      do
+        assert (splitAmount > 0.0 && splitAmount < amount)
+        part1 <- create this with amount = splitAmount
+        part2 <- create this with amount = amount - splitAmount
+        return (part1, part2)
+
+    -- Read amount (non-consuming)
+    nonconsuming choice GetAmount : Decimal
+      controller owner
+      do return amount

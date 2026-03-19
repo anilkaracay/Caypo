@@ -1,0 +1,7 @@
+sdk-version: 3.4.11
+name: caypo-test-token
+version: 0.0.1
+source: .
+dependencies:
+  - daml-prim
+  - daml-stdlib

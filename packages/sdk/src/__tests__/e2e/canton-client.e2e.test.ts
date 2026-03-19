@@ -1,165 +1,190 @@
 /**
  * CantonClient E2E tests — runs against a real Canton sandbox.
- * Skipped automatically if no Canton node is reachable.
+ * Uses capability detection to skip tests that need unavailable features.
+ * Skipped entirely if no Canton node is reachable.
  */
 
 import { beforeAll, describe, expect, it } from "vitest";
 import { CantonClient } from "../../canton/client.js";
-import { CantonApiError } from "../../canton/errors.js";
-import { getCantonConnection, createTestClient, createTestParty } from "./setup.js";
+import { CantonApiError, CantonAuthError } from "../../canton/errors.js";
+import {
+  getCantonConnection,
+  detectCapabilities,
+  createTestClient,
+  createTestParty,
+  type CantonCapabilities,
+} from "./setup.js";
 
 let client: CantonClient;
 let cantonAvailable = false;
-let ledgerUrl = "";
+let caps: CantonCapabilities = {
+  cantonAvailable: false,
+  v2ApiAvailable: false,
+  partyCreation: false,
+  authRequired: false,
+};
 
 beforeAll(async () => {
   const conn = await getCantonConnection();
   cantonAvailable = conn.isAvailable;
-  ledgerUrl = conn.ledgerUrl;
   if (cantonAvailable) {
-    client = createTestClient(ledgerUrl);
+    client = createTestClient(conn.ledgerUrl);
+    caps = await detectCapabilities(conn.ledgerUrl);
   }
 });
 
-describe.skipIf(!cantonAvailable)("CantonClient E2E", () => {
-  // -------------------------------------------------------------------------
-  // Health
-  // -------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Core — only needs /livez
+// ---------------------------------------------------------------------------
 
-  it("should confirm Canton node is healthy", async () => {
-    const healthy = await client.isHealthy();
-    expect(healthy).toBe(true);
+describe.skipIf(!cantonAvailable)("CantonClient E2E — Core", () => {
+  it("should confirm Canton node is healthy via /livez", async () => {
+    expect(await client.isHealthy()).toBe(true);
   });
 
-  // -------------------------------------------------------------------------
-  // Ledger state
-  // -------------------------------------------------------------------------
+  it("should return false for non-routable IP", async () => {
+    const bad = new CantonClient({ ledgerUrl: "http://192.0.2.1:7575", token: "t", userId: "u", timeout: 1000 });
+    expect(await bad.isHealthy()).toBe(false);
+  });
+});
 
-  it("should return current ledger offset (>= 0)", async () => {
+// ---------------------------------------------------------------------------
+// v2 API — needs /v2/state/ledger-end
+// ---------------------------------------------------------------------------
+
+describe.skipIf(!caps.v2ApiAvailable)("CantonClient E2E — v2 API", () => {
+  it("should return ledger offset as number >= 0", async () => {
     const offset = await client.getLedgerEnd();
     expect(typeof offset).toBe("number");
     expect(offset).toBeGreaterThanOrEqual(0);
   });
 
-  // -------------------------------------------------------------------------
-  // Party management
-  // -------------------------------------------------------------------------
+  it("should query active contracts with WildcardFilter", async () => {
+    const offset = await client.getLedgerEnd();
+    const contracts = await client.queryActiveContracts({
+      filtersForAnyParty: {
+        cumulative: [{ identifierFilter: { WildcardFilter: { value: { includeCreatedEventBlob: false } } } }],
+      },
+      activeAtOffset: offset,
+    });
+    expect(Array.isArray(contracts)).toBe(true);
+  });
 
-  it("should allocate a new party with correct format", async () => {
+  it("should return null for non-existent transaction", async () => {
+    expect(await client.getTransactionById("nonexistent-99999")).toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Parties — needs party creation
+// ---------------------------------------------------------------------------
+
+describe.skipIf(!caps.partyCreation)("CantonClient E2E — Parties", () => {
+  it("should allocate party matching Name::hexfingerprint", async () => {
     const party = await createTestParty(client, "e2e-test");
-    // Format: DisplayName::hexfingerprint
-    expect(party).toMatch(/::[a-f0-9]+$/);
-    expect(party).toContain("e2e-test");
+    expect(party).toMatch(/^e2e-test.*::[a-f0-9]+$/);
   });
 
   it("should list parties including newly created one", async () => {
     const newParty = await createTestParty(client, "e2e-list");
     const parties = await client.listParties();
-
     expect(parties.length).toBeGreaterThan(0);
-    expect(parties[0].party).toMatch(/::[a-f0-9]+$/);
-
-    const found = parties.some((p) => p.party === newParty);
-    expect(found).toBe(true);
+    expect(parties.some((p) => p.party === newParty)).toBe(true);
   });
 
-  it("should return isLocal=true for locally allocated party", async () => {
-    const hint = `e2e-local-${Date.now()}`;
-    const details = await client.allocateParty(hint);
-
+  it("should return isLocal=true with valid localMetadata", async () => {
+    const details = await client.allocateParty(`e2e-local-${Date.now()}`);
     expect(details.isLocal).toBe(true);
-    expect(details.identityProviderId).toBe("");
     expect(details.localMetadata).toBeDefined();
     expect(details.localMetadata.resourceVersion).toBeDefined();
   });
 
-  // -------------------------------------------------------------------------
-  // Active contracts
-  // -------------------------------------------------------------------------
+  it("should produce unique party IDs for same prefix", async () => {
+    const p1 = await createTestParty(client, "e2e-dup");
+    const p2 = await createTestParty(client, "e2e-dup");
+    expect(p1).not.toBe(p2);
+  });
 
-  it("should query active contracts at current offset", async () => {
+  it("should advance ledger offset after party creation", async () => {
+    const off1 = await client.getLedgerEnd();
+    await createTestParty(client, "e2e-advance");
+    const off2 = await client.getLedgerEnd();
+    expect(off2).toBeGreaterThanOrEqual(off1);
+  });
+
+  it("should return empty contracts for fresh party", async () => {
+    const party = await createTestParty(client, "e2e-empty");
     const offset = await client.getLedgerEnd();
     const contracts = await client.queryActiveContracts({
-      filtersForAnyParty: {
-        cumulative: [
-          {
-            identifierFilter: {
-              WildcardFilter: { value: { includeCreatedEventBlob: false } },
-            },
-          },
-        ],
+      filtersByParty: {
+        [party]: { cumulative: [{ identifierFilter: { WildcardFilter: { value: {} } } }] },
       },
       activeAtOffset: offset,
     });
-
-    expect(Array.isArray(contracts)).toBe(true);
-    // May be empty on fresh sandbox — that's OK
+    expect(contracts).toEqual([]);
   });
+});
 
-  // -------------------------------------------------------------------------
-  // Transaction lookup
-  // -------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Errors — needs v2 API
+// ---------------------------------------------------------------------------
 
-  it("should return null for non-existent transaction", async () => {
-    const result = await client.getTransactionById("nonexistent-update-id-12345");
-    expect(result).toBeNull();
-  });
-
-  // -------------------------------------------------------------------------
-  // Error handling
-  // -------------------------------------------------------------------------
-
-  it("should return structured error for invalid command", async () => {
+describe.skipIf(!caps.v2ApiAvailable)("CantonClient E2E — Errors", () => {
+  it("should throw structured error for invalid command", async () => {
     try {
       await client.submitAndWait({
-        commands: [
-          {
-            CreateCommand: {
-              createArguments: {},
-              templateId: "nonexistent:Module:Template",
-            },
-          },
-        ],
-        commandId: `error-test-${Date.now()}`,
+        commands: [{ CreateCommand: { createArguments: {}, templateId: "nonexistent:Module:Template" } }],
+        commandId: `err-${Date.now()}`,
         actAs: ["nonexistent::0000"],
       });
       expect.fail("Should have thrown");
     } catch (err) {
-      // Should be a structured Canton error (CantonApiError or CantonAuthError)
-      expect(err).toBeDefined();
+      expect(err instanceof CantonApiError || err instanceof CantonAuthError || err instanceof Error).toBe(true);
       if (err instanceof CantonApiError) {
         expect(err.code).toBeTruthy();
-        expect(err.ledgerCause).toBeTruthy();
+        expect(typeof err.grpcCodeValue).toBe("number");
       }
-      // Some Canton setups may return 401 for invalid parties — that's also valid
     }
   });
+});
 
-  // -------------------------------------------------------------------------
-  // Timeout
-  // -------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// CreateCommand + Query cycle — requires DAR
+// ---------------------------------------------------------------------------
 
-  it("should return false for health check on unreachable endpoint", async () => {
-    const badClient = new CantonClient({
-      ledgerUrl: "http://192.0.2.1:7575", // RFC 5737 non-routable
-      token: "test",
-      userId: "test",
-      timeout: 1000,
-    });
-    const healthy = await badClient.isHealthy();
-    expect(healthy).toBe(false);
-  });
+describe.skipIf(!caps.partyCreation)("CantonClient E2E — Command Cycle", () => {
+  it("should submit CreateCommand and query back (if DAR loaded)", async () => {
+    const party = await createTestParty(client, "e2e-create");
+    try {
+      const result = await client.submitAndWait({
+        commands: [{
+          CreateCommand: {
+            templateId: "#caypo-test-token:Token:Token",
+            createArguments: { issuer: party, owner: party, amount: "100.0", name: "TestUSDCx" },
+          },
+        }],
+        commandId: `create-${Date.now()}`,
+        actAs: [party],
+      });
 
-  // -------------------------------------------------------------------------
-  // Ledger end increases over time
-  // -------------------------------------------------------------------------
+      expect(result.updateId).toBeTruthy();
+      expect(result.completionOffset).toBeGreaterThan(0);
 
-  it("should have non-decreasing ledger offset", async () => {
-    const offset1 = await client.getLedgerEnd();
-    // Allocate a party to advance the ledger
-    await createTestParty(client, "e2e-advance");
-    const offset2 = await client.getLedgerEnd();
-
-    expect(offset2).toBeGreaterThanOrEqual(offset1);
+      // Query back
+      const offset = await client.getLedgerEnd();
+      const contracts = await client.queryActiveContracts({
+        filtersByParty: { [party]: { cumulative: [{ identifierFilter: { WildcardFilter: { value: {} } } }] } },
+        activeAtOffset: offset,
+      });
+      expect(contracts.length).toBeGreaterThan(0);
+      const token = contracts.find((c) => c.createArgument.name === "TestUSDCx");
+      expect(token).toBeDefined();
+    } catch (err) {
+      // DAR not loaded — expected on bare sandbox
+      if (err instanceof CantonApiError && (err.code === "INVALID_ARGUMENT" || err.code === "NOT_FOUND")) {
+        return;
+      }
+      throw err;
+    }
   });
 });

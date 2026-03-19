@@ -9,6 +9,9 @@
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
     "test:e2e": "vitest run --config vitest.e2e.config.ts",
+    "test:e2e:live": "./scripts/run-e2e.sh",
+    "sandbox:start": "./sandbox/setup-binary.sh",
+    "sandbox:stop": "./sandbox/stop.sh",
     "verify": "npx tsx scripts/verify.ts",
     "verify:canton": "npx tsx scripts/verify.ts --with-canton http://localhost:7575"
   },
