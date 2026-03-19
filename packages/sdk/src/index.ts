@@ -62,3 +62,20 @@ export {
 // Holding selection
 export { InsufficientBalanceError, selectHoldings } from "./canton/holdings.js";
 export type { HoldingSelection, USDCxHolding } from "./canton/holdings.js";
+
+// Wallet keystore
+export { Keystore } from "./wallet/keystore.js";
+export type { WalletData } from "./wallet/keystore.js";
+
+// Agent configuration
+export { loadConfig, saveConfig, DEFAULT_CONFIG } from "./wallet/config.js";
+export type {
+  AgentConfig,
+  TrafficConfig,
+  SafeguardsConfig,
+  MppConfig,
+} from "./wallet/config.js";
+
+// Safeguards
+export { SafeguardManager } from "./safeguards/manager.js";
+export type { SafeguardConfig, CheckResult } from "./safeguards/manager.js";
