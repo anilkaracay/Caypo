@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import GatewayHero from "@/components/gateway/GatewayHero";
 import AgentDemo from "@/components/gateway/AgentDemo";
 import ServiceCatalog from "@/components/gateway/ServiceCatalog";
@@ -14,6 +15,7 @@ export const metadata = {
 export default function GatewayPage() {
   return (
     <>
+      <Header />
       <GatewayHero />
       <section id="demo" className="py-20 px-6 max-w-6xl mx-auto">
         <AgentDemo />

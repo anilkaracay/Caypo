@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import DocsHero from "@/components/docs/DocsHero";
 import QuickStart from "@/components/docs/QuickStart";
 import PackageGrid from "@/components/docs/PackageGrid";
@@ -13,6 +14,7 @@ export const metadata = {
 export default function DocsPage() {
   return (
     <div className="min-h-screen">
+      <Header />
       <DocsHero />
       <section id="quickstart" className="py-16 px-6 max-w-5xl mx-auto">
         <QuickStart />
