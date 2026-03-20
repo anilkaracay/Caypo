@@ -4,7 +4,7 @@
 #
 # Usage:
 #   ./scripts/deploy-gateway.sh <server-ip>
-#   ./scripts/deploy-gateway.sh 84.32.223.16
+#   ./scripts/deploy-gateway.sh <server-ip>
 #
 # Prerequisites:
 #   - SSH access to the server

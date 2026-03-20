@@ -10,3 +10,11 @@ coverage/
 sandbox/.canton/
 sandbox/.canton.pid
 sandbox/daml/.daml/
+
+# Private internal docs
+MILESTONE-2.md
+PROJECT.md
+skills/SKILL.md
+skills/AGENT-SKILLS.md
+packages/*/SPEC.md
+*.prompt.md
