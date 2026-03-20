@@ -142,17 +142,7 @@ export default function LiveTerminal({ scenarioId, onReset }: Props) {
   }
 
   return (
-    <div className="bg-[#0D0D14] border border-[#1E293B]/50 rounded-xl overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1E293B]/30">
-        <span className="w-3 h-3 rounded-full bg-[#EF4444]" />
-        <span className="w-3 h-3 rounded-full bg-[#EAB308]" />
-        <span className="w-3 h-3 rounded-full bg-[#22C55E]" />
-        <span className="text-xs text-[#64748B] ml-2">CAYPO Live Demo</span>
-        <span className="text-xs text-[#64748B] ml-auto">Canton DevNet</span>
-      </div>
-
-      {/* Body */}
+    <>
       <div
         ref={bodyRef}
         className="p-5 font-[family-name:var(--font-geist-mono)] text-[13px] leading-[1.7] max-h-[500px] overflow-y-auto"
@@ -174,6 +164,6 @@ export default function LiveTerminal({ scenarioId, onReset }: Props) {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
