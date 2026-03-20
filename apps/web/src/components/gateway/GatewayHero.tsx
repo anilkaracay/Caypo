@@ -376,14 +376,19 @@ export default function GatewayHero() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Demo indicator */}
-              <div className="px-4 py-2.5 border-t border-white/5 flex items-center gap-4">
+              {/* Demo selector */}
+              <div className="px-4 py-2 border-t border-white/5 flex items-center gap-2">
                 {GATEWAY_TERMINAL_DEMOS.map((d, i) => (
-                  <button key={d.id} onClick={() => jumpTo(i)} className="flex items-center gap-1.5 group">
-                    <span className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeDemo ? "bg-[#3B82F6]" : "bg-[#334155] group-hover:bg-[#64748B]"}`} />
-                    <span className={`text-[11px] font-[family-name:var(--font-geist-mono)] transition-colors ${i === activeDemo ? "text-[#94A3B8]" : "text-[#475569] group-hover:text-[#64748B]"}`}>
-                      {d.label}
-                    </span>
+                  <button
+                    key={d.id}
+                    onClick={() => jumpTo(i)}
+                    className={`px-3 py-1.5 rounded-md text-[11px] font-[family-name:var(--font-geist-mono)] transition-all duration-200 ${
+                      i === activeDemo
+                        ? "bg-[#3B82F6]/15 text-[#93C5FD] border border-[#3B82F6]/30"
+                        : "text-[#475569] hover:text-[#94A3B8] hover:bg-white/[0.03] border border-transparent"
+                    }`}
+                  >
+                    {d.label}
                   </button>
                 ))}
               </div>
