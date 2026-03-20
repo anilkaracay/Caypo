@@ -66,7 +66,7 @@ export default function Hero() {
           variants={item}
           className="font-[family-name:var(--font-instrument-serif)] text-[56px] lg:text-[72px] leading-[1.05] tracking-[-0.03em] text-foreground"
         >
-          A bank account for
+          Agent finance on
           <br />
           <span
             style={{
@@ -75,7 +75,7 @@ export default function Hero() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            AI agents
+            institutional rails
           </span>
         </motion.h1>
 
