@@ -3,7 +3,7 @@
   <p align="center"><strong>A bank account for AI agents on Canton Network</strong></p>
   <p align="center">
     <a href="LICENSE-APACHE"><img src="https://img.shields.io/badge/license-Apache--2.0%20%2F%20MIT-blue" alt="License"></a>
-    <img src="https://img.shields.io/badge/tests-264%20passing-brightgreen" alt="Tests">
+    <img src="https://img.shields.io/badge/tests-312%20passing-brightgreen" alt="Tests">
     <img src="https://img.shields.io/badge/canton-DevNet%20verified-purple" alt="Canton DevNet">
     <img src="https://img.shields.io/badge/packages-5-orange" alt="Packages">
   </p>
@@ -52,8 +52,8 @@ Agent                              Gateway                         Canton Networ
 |---------|-------------|
 | **[@caypo/mpp-canton](packages/mpp/)** | Canton payment method for MPP — accept and make USDCx payments in any HTTP API |
 | **[@caypo/canton-sdk](packages/sdk/)** | Core SDK — Canton API client, USDCx transfers, encrypted wallets, safeguards, MPP auto-pay |
-| **[@caypo/canton-cli](packages/cli/)** | CLI tool — `caypo init`, `caypo send`, `caypo pay`, 8 commands |
-| **[@caypo/canton-mcp](packages/mcp/)** | MCP server — 33 tools + 20 prompts for Claude Desktop, Cursor, Windsurf |
+| **[@caypo/canton-cli](packages/cli/)** | CLI tool — 36 commands: init, balance, send, pay, savings, credit, exchange, invest |
+| **[@caypo/canton-mcp](packages/mcp/)** | MCP server — 35 tools + 20 prompts for Claude Desktop, Cursor, Windsurf |
 | **[@caypo/canton-gateway](packages/gateway/)** | API gateway — 17 services, 46 endpoints with pay-per-request pricing |
 
 ## Quick Start
@@ -129,7 +129,7 @@ caypo mcp install
 
 Then ask Claude: *"What's my CAYPO balance?"* or *"Send 5 USDCx to Alice::1220..."*
 
-**33 tools** — balance, send, receive, pay, safeguards, traffic, and more.
+**35 tools** — balance, send, receive, pay, savings, credit, exchange, invest, safeguards, traffic, and more.
 **20 prompts** — morning briefing, financial report, security audit, spending analysis.
 
 ## Gateway Services
@@ -221,19 +221,18 @@ Test breakdown: 277 SDK (client, USDCx, amounts, safeguards, keystore, agent, pa
 
 | Version | Features | Status |
 |---------|----------|--------|
-| **v0.1** | MPP payment method, Core SDK, CLI, MCP server, Gateway | Done |
-| **v1.0** | Production-ready, npm publish, documentation site | In progress |
-| **v1.1** | Savings account (DeFi yield on Canton) | Phase 3 |
-| **v2.0** | Session intent (streaming payments, pay-per-token) | Phase 3 |
-| **v2.1** | Exchange (Temple DEX integration) | Phase 3 |
-| **v3.0** | Investment accounts, Credit, Portfolio management | Phase 4 |
+| **v0.1** | MPP payment method, Core SDK, CLI (8 cmds), MCP server (14 tools), Gateway | Done |
+| **v0.2** | Savings, Credit, Exchange, Investment accounts, 35 MCP tools, 36 CLI commands, Agent Skills, Gateway live at mpp.caypo.xyz, Landing page at caypo.xyz | Done |
+| **v1.0** | Production hardening, full Canton mainnet support | Next |
+| **v1.1** | Session intent (streaming payments, pay-per-token) | Planned |
+| **v2.0** | Exchange (Temple DEX integration), real DeFi protocol adapters | Planned |
 
 ## Development
 
 ```bash
 pnpm install        # Install dependencies
 pnpm build          # Build all 7 packages
-pnpm test           # Run 264 tests
+pnpm test           # Run 312 tests
 pnpm test:e2e       # E2E tests (needs Canton sandbox)
 pnpm verify         # Full 20-check verification suite
 ```
@@ -250,10 +249,18 @@ Dual-licensed under [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT).
 
 Copyright 2025 Cayvox Labs
 
+## Live
+
+- **Landing page**: [caypo.xyz](https://caypo.xyz)
+- **Gateway**: [mpp.caypo.xyz](https://mpp.caypo.xyz) — 17 services, 46 endpoints
+- **Docs**: [caypo.xyz/docs](https://caypo.xyz/docs)
+- **npm**: [npmjs.com/org/caypo](https://www.npmjs.com/org/caypo)
+
 ---
 
 <p align="center">
+  <a href="https://caypo.xyz">caypo.xyz</a> &bull;
+  <a href="https://mpp.caypo.xyz">mpp.caypo.xyz</a> &bull;
   <a href="https://canton.network">Canton Network</a> &bull;
-  <a href="https://mpp.dev">MPP Protocol</a> &bull;
-  <a href="https://github.com/tempoxyz/mpp-specs">MPP Specs</a>
+  <a href="https://mpp.dev">MPP Protocol</a>
 </p>
