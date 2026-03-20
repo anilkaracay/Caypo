@@ -25,7 +25,7 @@ const program = new Command();
 
 program
   .name("caypo")
-  .description("CAYPO — A bank account for AI agents on Canton Network")
+  .description("CAYPO — Agent finance on institutional rails")
   .version(CANTON_CLI_VERSION, "-v, --version")
   // Setup
   .addCommand(initCommand)

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="CAYPO — A bank account for AI agents on Canton Network" width="100%">
+  <img src="assets/banner.svg" alt="CAYPO — Agent finance on institutional rails" width="100%">
 </p>
 
 <p align="center">

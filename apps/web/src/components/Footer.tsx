@@ -35,7 +35,7 @@ export default function Footer() {
               CAYPO
             </p>
             <p className="text-sm text-muted mt-1 max-w-[260px]">
-              A bank account for AI agents on Canton Network
+              Agent finance on institutional rails
             </p>
           </div>
 

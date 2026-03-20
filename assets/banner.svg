@@ -2,5 +2,5 @@
   <rect width="800" height="200" fill="#0A0A0F"/>
   <line x1="0" y1="3" x2="800" y2="3" stroke="#3B82F6" stroke-width="3"/>
   <text x="400" y="95" text-anchor="middle" font-family="Georgia, serif" font-size="56" font-weight="400" fill="#F8FAFC" letter-spacing="6">CAYPO</text>
-  <text x="400" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" letter-spacing="1">A bank account for AI agents on Canton Network</text>
+  <text x="400" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8" letter-spacing="1">Agent finance on institutional rails</text>
 </svg>

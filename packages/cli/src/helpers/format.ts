@@ -13,7 +13,7 @@ export const accent = (text: string) => chalk.cyan(text);
 export const dim = (text: string) => chalk.dim(text);
 
 export function banner(): void {
-  console.log(chalk.cyan.bold("\n  CAYPO") + chalk.gray(" — A bank account for AI agents on Canton Network\n"));
+  console.log(chalk.cyan.bold("\n  CAYPO") + chalk.gray(" — Agent finance on institutional rails\n"));
 }
 
 export function keyValue(key: string, val: string): void {

@@ -33,7 +33,7 @@ export function registerDiscoveryRoutes(app: Hono): void {
   app.get("/llms.txt", (c) => {
     const lines: string[] = [
       "# CAYPO MPP Gateway",
-      "# A bank account for AI agents on Canton Network",
+      "# Agent finance on institutional rails",
       "# Payment: Canton CIP-56 TransferPreapproval (USDCx)",
       "",
       `> Total services: ${services.length}`,

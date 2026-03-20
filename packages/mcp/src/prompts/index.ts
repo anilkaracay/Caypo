@@ -420,7 +420,7 @@ Note: This is informational only. Consult a tax professional for actual filing.`
 
   // 18
   prompt("onboarding", "New user guide — explain CAYPO features and walk through setup",
-    `Welcome to CAYPO — your bank account for AI agents on Canton Network!
+    `Welcome to CAYPO — your agent finance platform on Canton Network!
 
 Let me walk you through everything. Use these tools to explore:
 

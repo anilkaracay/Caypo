@@ -45,7 +45,7 @@ MCP
 ```
 $ caypo init
 
-  CAYPO — A bank account for AI agents on Canton Network
+  CAYPO — Agent finance on institutional rails
 
   ? Choose a PIN for your wallet: ****
   ? Confirm PIN: ****

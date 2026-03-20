@@ -19,11 +19,11 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "CAYPO — A bank account for AI agents on Canton Network",
+  title: "CAYPO — Agent finance on institutional rails",
   description:
     "Five accounts. One SDK. Zero friction. Checking, savings, credit, exchange, and investment for AI agents — powered by USDCx and the Machine Payments Protocol.",
   openGraph: {
-    title: "CAYPO — A bank account for AI agents on Canton Network",
+    title: "CAYPO — Agent finance on institutional rails",
     description:
       "Five accounts. One SDK. Zero friction. AI agent banking on Canton Network with USDCx and MPP.",
     url: "https://caypo.xyz",

@@ -24,7 +24,7 @@ app.use("*", cors({
 app.get("/", (c) => {
   return c.json({
     name: "CAYPO MPP Gateway",
-    description: "A bank account for AI agents on Canton Network",
+    description: "Agent finance on institutional rails",
     version: CANTON_GATEWAY_VERSION,
     docs: "/api/services",
     discovery: "/llms.txt",

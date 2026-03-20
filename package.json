@@ -1,7 +1,7 @@
 {
   "name": "caypo",
   "private": true,
-  "description": "A bank account for AI agents on Canton Network",
+  "description": "Agent finance on institutional rails",
   "author": "Cayvox Labs <dev@caypo.xyz>",
   "homepage": "https://github.com/anilkaracay/Caypo",
   "repository": { "type": "git", "url": "https://github.com/anilkaracay/Caypo.git" },
