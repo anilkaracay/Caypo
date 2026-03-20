@@ -13,7 +13,7 @@ export const ACCOUNTS = [
   {
     id: "savings",
     name: "Savings",
-    tagline: "Auto-yield via DeFi protocols. Rebalance across providers.",
+    tagline: "Earn yield on idle USDCx. Protocol-agnostic adapters.",
     cli: "$ caypo save 1000\n✓ Deposited 1,000.00 USDCx\n  Protocol: Canton Yield (4.21% APY)\n  Savings balance: $1,200.00",
     metrics: [
       { label: "Deposited", value: "$1,200.00 USDCx" },
@@ -24,7 +24,7 @@ export const ACCOUNTS = [
   {
     id: "credit",
     name: "Credit",
-    tagline: "Borrow against savings. Health factor monitoring.",
+    tagline: "Collateralized borrowing. Real-time health factor.",
     cli: "$ caypo borrow 200\n✓ Borrowed 200.00 USDCx\n  Rate: 7.83% APR\n  Health factor: 1.85",
     metrics: [
       { label: "Borrowed", value: "$200.00 USDCx" },
@@ -35,7 +35,7 @@ export const ACCOUNTS = [
   {
     id: "exchange",
     name: "Exchange",
-    tagline: "Swap USDCx and CC. Slippage protection. Best rate routing.",
+    tagline: "Atomic swaps. USDCx ↔ CC. Best execution.",
     cli: "$ caypo exchange 100 USDCx CC\n✓ Swapped 100.00 USDCx → 6,666.67 CC\n  Rate: 66.667 CC/USDCx\n  Fee: 0.30 USDCx (0.3%)",
     metrics: [
       { label: "CC Price", value: "$0.015 USDCx" },
@@ -46,7 +46,7 @@ export const ACCOUNTS = [
   {
     id: "investment",
     name: "Investment",
-    tagline: "Portfolio management. Built-in strategies. DCA auto-invest.",
+    tagline: "Strategies, DCA, portfolio tracking.",
     cli: "$ caypo invest strategy buy balanced 500\n✓ Executed balanced strategy\n  CC: 250.00 USDCx → 16,666 CC\n  USDCx: 250.00 (yield enabled)",
     metrics: [
       { label: "Portfolio Value", value: "$500.00" },
