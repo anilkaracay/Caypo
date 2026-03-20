@@ -90,7 +90,7 @@ export default function Ecosystem() {
             ))}
 
             <a
-              href="/docs/gateway"
+              href="/gateway#services"
               className="inline-block mt-4 text-sm text-accent hover:underline"
             >
               View all services &rarr;
