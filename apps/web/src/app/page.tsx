@@ -50,9 +50,7 @@ export default function Home() {
               View on npm
             </a>
             <a
-              href="https://github.com/anilkaracay/Caypo/tree/main/docs"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/docs"
               className="px-6 py-3 border border-border rounded-lg text-muted hover:text-foreground hover:border-border-hover transition-colors"
             >
               Read the Docs

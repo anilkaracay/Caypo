@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -63,7 +64,7 @@ export default function Header() {
         {/* CTA */}
         <a
           href="/gateway"
-          className="text-sm font-medium px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
+          className="hidden md:inline-flex text-sm font-medium px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
           style={{
             boxShadow: "none",
           }}
@@ -77,7 +78,82 @@ export default function Header() {
         >
           Launch Gateway &rarr;
         </a>
+
+        {/* Hamburger button (mobile) */}
+        <button
+          onClick={() => setMobileMenuOpen(true)}
+          className="md:hidden text-[#F8FAFC]"
+          aria-label="Open menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
       </div>
+
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-[#0A0A0F]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+          {/* Close button */}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-6 right-6 text-[#F8FAFC]"
+            aria-label="Close menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Links */}
+          <a
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-2xl text-[#F8FAFC] hover:text-blue-400 transition-colors"
+          >
+            Home
+          </a>
+          <a
+            href="/gateway"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-2xl text-[#F8FAFC] hover:text-blue-400 transition-colors"
+          >
+            Gateway
+          </a>
+          <a
+            href="/docs"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-2xl text-[#F8FAFC] hover:text-blue-400 transition-colors"
+          >
+            Docs
+          </a>
+          <a
+            href="https://github.com/anilkaracay/Caypo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-[#F8FAFC] hover:text-blue-400 transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.npmjs.com/org/caypo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-[#F8FAFC] hover:text-blue-400 transition-colors"
+          >
+            npm
+          </a>
+
+          {/* CTA */}
+          <a
+            href="/gateway"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-2xl font-medium px-6 py-3 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
+          >
+            Launch Gateway &rarr;
+          </a>
+        </div>
+      )}
     </header>
   );
 }

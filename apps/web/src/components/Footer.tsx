@@ -1,19 +1,25 @@
+const npmSdk = "https://www.npmjs.com/package/@caypo/canton-sdk";
+const npmCli = "https://www.npmjs.com/package/@caypo/canton-cli";
+const npmMcp = "https://www.npmjs.com/package/@caypo/canton-mcp";
+const npmOrg = "https://www.npmjs.com/org/caypo";
+const githubRepo = "https://github.com/anilkaracay/Caypo";
+
 const LINKS = {
   Products: [
-    { label: "SDK", href: "https://www.npmjs.com/package/@caypo/canton-sdk" },
-    { label: "CLI", href: "https://www.npmjs.com/package/@caypo/canton-cli" },
-    { label: "MCP Server", href: "https://www.npmjs.com/package/@caypo/canton-mcp" },
-    { label: "Gateway", href: "https://www.npmjs.com/package/@caypo/canton-gateway" },
+    { label: "SDK", href: npmSdk },
+    { label: "CLI", href: npmCli },
+    { label: "MCP Server", href: npmMcp },
+    { label: "Gateway", href: "/gateway" },
   ],
   Developers: [
     { label: "Docs", href: "/docs" },
-    { label: "npm Packages", href: "https://www.npmjs.com/org/caypo" },
-    { label: "API Reference", href: "/docs/api" },
-    { label: "Agent Skills", href: "/docs/skills" },
+    { label: "npm Packages", href: npmOrg },
+    { label: "API Reference", href: "/docs#api" },
+    { label: "Agent Skills", href: githubRepo + "/tree/main/skills" },
   ],
   Community: [
-    { label: "GitHub", href: "https://github.com/anilkaracay/Caypo" },
-    { label: "X (Twitter)", href: "https://x.com/cayvoxlabs" },
+    { label: "GitHub", href: githubRepo },
+    { label: "X (Twitter)", href: "#" },
   ],
 };
 

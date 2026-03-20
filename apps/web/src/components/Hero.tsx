@@ -93,7 +93,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4 mt-2"
         >
           <a
-            href="/docs/getting-started"
+            href="/docs#quickstart"
             className="px-6 py-3 rounded-lg bg-accent text-white font-medium text-sm hover:brightness-110 transition-all duration-200"
           >
             Get Started
