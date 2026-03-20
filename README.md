@@ -227,9 +227,7 @@ We welcome contributions. Please [open an issue](https://github.com/anilkaracay/
 
 ## Built by Cayvox Labs
 
-Canton Network mainnet validator operator since 2026. Canton Catalyst 2026 alumni. Running a production mainnet validator (TIFA-validator-1) on Canton Global Synchronizer.
-
-Building financial products on Canton: **CAYPO** (agent payments), **TIFA Finance** (validator infrastructure), **Dualis Finance** (institutional lending).
+Canton Network mainnet validator. **Canton Catalyst 2026 — 1st place winner.**
 
 ## License
 
