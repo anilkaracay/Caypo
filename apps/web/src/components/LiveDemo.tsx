@@ -21,13 +21,6 @@ export default function LiveDemo() {
 
           <div className="flex items-center gap-3">
             {selectedScenario !== null && (
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
-                <span className="text-[#64748B] font-[family-name:var(--font-geist-mono)] text-[11px]">Canton DevNet</span>
-              </div>
-            )}
-
-            {selectedScenario !== null && (
               <button
                 onClick={handleRestart}
                 className="text-[#64748B] hover:text-[#F8FAFC] transition-all duration-200 flex items-center gap-1.5 text-xs font-[family-name:var(--font-geist-mono)] group"

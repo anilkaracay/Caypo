@@ -24,9 +24,6 @@ export default function Home() {
             <h2 className="font-[family-name:var(--font-instrument-serif)] text-3xl md:text-4xl">
               Try CAYPO
             </h2>
-            <p className="text-muted mt-2">
-              on Canton DevNet
-            </p>
             <p className="text-sm text-muted mt-4 max-w-lg mx-auto">
               Select a financial scenario. Each demo runs real Canton transactions — verifiable on ccview.io.
             </p>
