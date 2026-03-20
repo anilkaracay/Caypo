@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import AgentTicker from "@/components/AgentTicker";
 import Accounts from "@/components/Accounts";
 import HowItWorks from "@/components/HowItWorks";
-import AgentDemo from "@/components/AgentDemo";
+import LiveDemo from "@/components/LiveDemo";
 import Ecosystem from "@/components/Ecosystem";
 import WhyCanton from "@/components/WhyCanton";
 import Numbers from "@/components/Numbers";
@@ -18,7 +18,24 @@ export default function Home() {
         <AgentTicker />
         <Accounts />
         <HowItWorks />
-        <AgentDemo />
+        {/* Live Demo — Interactive Canton DevNet scenarios */}
+        <section className="py-20 px-6">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="font-[family-name:var(--font-instrument-serif)] text-3xl md:text-4xl">
+              Try CAYPO
+            </h2>
+            <p className="text-muted mt-2">
+              on Canton DevNet
+            </p>
+            <p className="text-sm text-muted mt-4 max-w-lg mx-auto">
+              Select a financial scenario. Each demo runs real Canton transactions — verifiable on ccview.io.
+            </p>
+          </div>
+          <LiveDemo />
+          <p className="text-center text-xs text-muted mt-6 font-[family-name:var(--font-geist-mono)]">
+            Real transactions on Canton DevNet · Verifiable on ccview.io · ~1s per demo
+          </p>
+        </section>
         <Ecosystem />
         <WhyCanton />
         <Numbers />
