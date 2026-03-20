@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isGateway = pathname === "/gateway";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -61,23 +64,29 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <a
-          href="/gateway"
-          className="hidden md:inline-flex text-sm font-medium px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
-          style={{
-            boxShadow: "none",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.boxShadow =
-              "0 0 20px 4px rgba(59,130,246,0.2)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.boxShadow = "none";
-          }}
-        >
-          Launch Gateway &rarr;
-        </a>
+        {/* CTA — context-aware */}
+        {isGateway ? (
+          <a
+            href="/"
+            className="hidden md:inline-flex text-sm font-medium px-4 py-2 rounded-lg border border-border text-muted hover:text-foreground hover:border-border-hover transition-all duration-200"
+          >
+            &larr; caypo.xyz
+          </a>
+        ) : (
+          <a
+            href="/gateway"
+            className="hidden md:inline-flex text-sm font-medium px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-all duration-200"
+            style={{ boxShadow: "none" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px 4px rgba(59,130,246,0.2)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.boxShadow = "none";
+            }}
+          >
+            Launch Gateway &rarr;
+          </a>
+        )}
 
         {/* Hamburger button (mobile) */}
         <button
