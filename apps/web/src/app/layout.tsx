@@ -21,11 +21,11 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "CAYPO — Agent finance on institutional rails",
   description:
-    "Five accounts. One SDK. Zero friction. Checking, savings, credit, exchange, and investment for AI agents — powered by USDCx and the Machine Payments Protocol.",
+    "Everything an agent needs. One SDK. Checking, savings, credit, exchange, and investment — powered by USDCx and the Machine Payments Protocol.",
   openGraph: {
     title: "CAYPO — Agent finance on institutional rails",
     description:
-      "Five accounts. One SDK. Zero friction. AI agent banking on Canton Network with USDCx and MPP.",
+      "Everything an agent needs. One SDK. Agent finance on Canton Network with USDCx and MPP.",
     url: "https://caypo.xyz",
     siteName: "CAYPO",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CAYPO — AI Agent Banking on Canton Network",
-    description: "Five accounts. One SDK. Zero friction.",
+    description: "Everything an agent needs. One SDK.",
   },
   metadataBase: new URL("https://caypo.xyz"),
 };

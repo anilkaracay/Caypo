@@ -84,7 +84,7 @@ export default function Hero() {
           variants={item}
           className="text-muted text-lg max-w-lg mx-auto"
         >
-          Five accounts. One SDK. Zero friction.
+          Everything an agent needs. One SDK.
         </motion.p>
 
         {/* Buttons */}
