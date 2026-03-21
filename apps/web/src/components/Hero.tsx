@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { StripeIcon } from "./BrandIcons";
 
 const container = {
   hidden: {},
@@ -115,12 +114,12 @@ export default function Hero() {
         >
           <a href="https://canton.network" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#A78BFA] bg-[rgba(139,92,246,0.12)] hover:bg-[rgba(139,92,246,0.20)] transition-colors">
-            <img src="/logos/canton.svg" alt="Canton" width={16} height={16} className="w-4 h-4 shrink-0" />
+            <img src="/logos/canton-icon.png" alt="Canton" width={16} height={16} className="w-4 h-4 shrink-0" />
             Canton Network
           </a>
           <a href="https://mpp.dev" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#818CF8] bg-[rgba(99,91,255,0.12)] hover:bg-[rgba(99,91,255,0.20)] transition-colors">
-            <StripeIcon size={16} />
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#F8FAFC] bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.14)] transition-colors">
+            <img src="/logos/tempo.svg" alt="Tempo" width={16} height={16} className="w-4 h-4 shrink-0" style={{ filter: "brightness(0) invert(1)" }} />
             MPP — Stripe × Tempo
           </a>
           <span
