@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { StripeIcon } from "./BrandIcons";
 
 const container = {
   hidden: {},
@@ -54,8 +55,7 @@ export default function Hero() {
               animation: "spin-badge 4s linear infinite",
             }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background text-sm text-muted">
-              <span className="w-2 h-2 rounded-full bg-accent" />
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-background text-sm text-muted">
               Built on Canton Network
             </span>
           </div>
@@ -115,17 +115,17 @@ export default function Hero() {
         >
           <a href="https://canton.network" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#A78BFA] bg-[rgba(139,92,246,0.12)] hover:bg-[rgba(139,92,246,0.20)] transition-colors">
-            <img src="/logos/canton.svg" alt="Canton" width={18} height={18} className="w-[18px] h-[18px] shrink-0" />
+            <img src="/logos/canton.svg" alt="Canton" width={16} height={16} className="w-4 h-4 shrink-0" />
             Canton Network
           </a>
           <a href="https://mpp.dev" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#818CF8] bg-[rgba(99,91,255,0.12)] hover:bg-[rgba(99,91,255,0.20)] transition-colors">
-            <img src="/logos/tempo.svg" alt="Tempo" width={18} height={18} className="w-[18px] h-[18px] shrink-0" />
+            <StripeIcon size={16} />
             MPP — Stripe × Tempo
           </a>
           <span
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#60A5FA] bg-[rgba(39,117,202,0.12)] hover:bg-[rgba(39,117,202,0.20)] transition-colors">
-            <img src="/logos/circle.svg" alt="Circle" width={18} height={18} className="w-[18px] h-[18px] shrink-0" />
+            <img src="/logos/circle.svg" alt="Circle" width={16} height={16} className="w-4 h-4 shrink-0" />
             USDCx by Circle
           </span>
         </motion.div>
