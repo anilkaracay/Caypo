@@ -114,18 +114,30 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-3 mt-4"
         >
           <a href="https://canton.network" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#A78BFA] bg-[rgba(139,92,246,0.15)] hover:bg-[rgba(139,92,246,0.25)] transition-colors">
-            <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#A78BFA] bg-[rgba(139,92,246,0.12)] hover:bg-[rgba(139,92,246,0.20)] transition-colors">
+            {/* Canton — layered hexagon mark */}
+            <svg className="w-[18px] h-[18px] shrink-0" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2z" stroke="#A78BFA" strokeWidth="1.5"/>
+              <path d="M12 6l5 2.8v6.4L12 18l-5-2.8V8.8L12 6z" stroke="#A78BFA" strokeWidth="1.2" opacity="0.6"/>
+              <circle cx="12" cy="12" r="2" fill="#A78BFA" opacity="0.8"/>
+            </svg>
             Canton Network
           </a>
           <a href="https://mpp.dev" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#818CF8] bg-[rgba(99,91,255,0.15)] hover:bg-[rgba(99,91,255,0.25)] transition-colors">
-            <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="" width={16} height={16} loading="lazy" className="w-4 h-4 shrink-0" />
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#818CF8] bg-[rgba(99,91,255,0.12)] hover:bg-[rgba(99,91,255,0.20)] transition-colors">
+            {/* Stripe S mark */}
+            <svg className="w-[18px] h-[18px] shrink-0" viewBox="0 0 24 24" fill="#818CF8">
+              <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/>
+            </svg>
             MPP — Stripe × Tempo
           </a>
           <span
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#34D399] bg-[rgba(0,211,149,0.10)] hover:bg-[rgba(0,211,149,0.18)] transition-colors">
-            <img src="https://cdn.simpleicons.org/circle/00D395" alt="" width={16} height={16} loading="lazy" className="w-4 h-4 shrink-0" />
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium text-[#60A5FA] bg-[rgba(39,117,202,0.12)] hover:bg-[rgba(39,117,202,0.20)] transition-colors">
+            {/* USDC dollar circle mark */}
+            <svg className="w-[18px] h-[18px] shrink-0" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#60A5FA" strokeWidth="1.5"/>
+              <path d="M12 6v1.5m0 9V18m-2.5-4.5c0 1.1.9 2 2.5 2s2.5-.7 2.5-2c0-1.5-2-1.8-2.5-2-.8-.3-2.5-.7-2.5-2 0-1.2 1-2 2.5-2s2.5.9 2.5 2" stroke="#60A5FA" strokeWidth="1.3" strokeLinecap="round"/>
+            </svg>
             USDCx by Circle
           </span>
         </motion.div>
