@@ -1,10 +1,12 @@
+const LH = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons";
+
 const AI_PLATFORMS = [
-  { name: "Claude Code", badge: "Agent Skills", color: "emerald" as const, logo: "https://cdn.simpleicons.org/anthropic/D4A27F" },
-  { name: "Claude Desktop", badge: "MCP Server", color: "blue" as const, logo: "https://cdn.simpleicons.org/anthropic/D4A27F" },
-  { name: "Cursor", badge: "MCP Server", color: "blue" as const, logo: "https://cdn.simpleicons.org/cursor/00A3FF" },
-  { name: "OpenAI Codex", badge: "Agent Skills", color: "emerald" as const, logo: "https://cdn.simpleicons.org/openai/FFFFFF" },
-  { name: "GitHub Copilot", badge: "Agent Skills", color: "emerald" as const, logo: "https://cdn.simpleicons.org/github/FFFFFF" },
-  { name: "Windsurf", badge: "MCP Server", color: "blue" as const, logo: "https://cdn.simpleicons.org/codeium/09B6A2" },
+  { name: "Claude Code", badge: "Agent Skills", color: "emerald" as const, logo: `${LH}/anthropic.svg` },
+  { name: "Claude Desktop", badge: "MCP Server", color: "blue" as const, logo: `${LH}/anthropic.svg` },
+  { name: "Cursor", badge: "MCP Server", color: "blue" as const, logo: `${LH}/cursor.svg` },
+  { name: "OpenAI Codex", badge: "Agent Skills", color: "emerald" as const, logo: `${LH}/openai.svg` },
+  { name: "GitHub Copilot", badge: "Agent Skills", color: "emerald" as const, logo: `${LH}/github.svg` },
+  { name: "Windsurf", badge: "MCP Server", color: "blue" as const, logo: `${LH}/codeium.svg` },
 ];
 
 const BADGE_STYLES = {
@@ -12,21 +14,20 @@ const BADGE_STYLES = {
   emerald: "bg-[rgba(16,185,129,0.1)] text-emerald",
 };
 
-// CDN logos for gateway services — null means use letter avatar
 const SERVICE_GRID: Array<{ name: string; logo: string | null; letter: string; letterColor: string; cat: string }> = [
-  { name: "OpenAI", logo: "https://cdn.simpleicons.org/openai/FFFFFF", letter: "O", letterColor: "#74AA9C", cat: "LLM" },
-  { name: "Anthropic", logo: "https://cdn.simpleicons.org/anthropic/D4A27F", letter: "A", letterColor: "#D4A27F", cat: "LLM" },
-  { name: "Gemini", logo: "https://cdn.simpleicons.org/googlegemini/8E75B2", letter: "G", letterColor: "#8E75B2", cat: "LLM" },
-  { name: "Groq", logo: "https://cdn.simpleicons.org/groq/F55036", letter: "G", letterColor: "#F55036", cat: "LLM" },
-  { name: "DeepSeek", logo: "https://cdn.simpleicons.org/deepseek/4D6BFE", letter: "D", letterColor: "#4D6BFE", cat: "LLM" },
-  { name: "Together", logo: null, letter: "T", letterColor: "#3B82F6", cat: "LLM" },
-  { name: "Perplexity", logo: "https://cdn.simpleicons.org/perplexity/20B8CD", letter: "P", letterColor: "#20B8CD", cat: "Search" },
+  { name: "OpenAI", logo: `${LH}/openai.svg`, letter: "O", letterColor: "#74AA9C", cat: "LLM" },
+  { name: "Anthropic", logo: `${LH}/anthropic.svg`, letter: "A", letterColor: "#D4A27F", cat: "LLM" },
+  { name: "Gemini", logo: `${LH}/gemini.svg`, letter: "G", letterColor: "#8E75B2", cat: "LLM" },
+  { name: "Groq", logo: `${LH}/groq.svg`, letter: "G", letterColor: "#F55036", cat: "LLM" },
+  { name: "DeepSeek", logo: `${LH}/deepseek.svg`, letter: "D", letterColor: "#4D6BFE", cat: "LLM" },
+  { name: "Together", logo: `${LH}/together-ai.svg`, letter: "T", letterColor: "#3B82F6", cat: "LLM" },
+  { name: "Perplexity", logo: `${LH}/perplexity.svg`, letter: "P", letterColor: "#20B8CD", cat: "Search" },
   { name: "Brave", logo: "https://cdn.simpleicons.org/brave/FB542B", letter: "B", letterColor: "#FB542B", cat: "Search" },
   { name: "Firecrawl", logo: null, letter: "F", letterColor: "#F97316", cat: "Search" },
-  { name: "fal.ai", logo: null, letter: "f", letterColor: "#A855F7", cat: "Media" },
-  { name: "ElevenLabs", logo: "https://cdn.simpleicons.org/elevenlabs/FFFFFF", letter: "E", letterColor: "#FFFFFF", cat: "Media" },
+  { name: "fal.ai", logo: `${LH}/fal.svg`, letter: "f", letterColor: "#A855F7", cat: "Media" },
+  { name: "ElevenLabs", logo: `${LH}/elevenlabs.svg`, letter: "E", letterColor: "#FFFFFF", cat: "Media" },
   { name: "Resend", logo: null, letter: "R", letterColor: "#94A3B8", cat: "Tools" },
-  { name: "Weather", logo: "https://cdn.simpleicons.org/openweathermap/EB6E4B", letter: "W", letterColor: "#EB6E4B", cat: "Tools" },
+  { name: "Weather", logo: null, letter: "W", letterColor: "#EB6E4B", cat: "Tools" },
   { name: "Maps", logo: "https://cdn.simpleicons.org/googlemaps/4285F4", letter: "M", letterColor: "#4285F4", cat: "Tools" },
   { name: "Judge0", logo: null, letter: "J", letterColor: "#10B981", cat: "Tools" },
   { name: "Reloadly", logo: null, letter: "R", letterColor: "#3B82F6", cat: "Tools" },
@@ -45,19 +46,18 @@ function LetterAvatar({ letter, color }: { letter: string; color: string }) {
 }
 
 function ServiceIcon({ logo, letter, letterColor }: { logo: string | null; letter: string; letterColor: string }) {
-  if (logo) {
-    return (
-      <img
-        src={logo}
-        alt=""
-        width={16}
-        height={16}
-        loading="lazy"
-        className="w-4 h-4 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity"
-      />
-    );
-  }
-  return <LetterAvatar letter={letter} color={letterColor} />;
+  if (!logo) return <LetterAvatar letter={letter} color={letterColor} />;
+  return (
+    <img
+      src={logo}
+      alt=""
+      width={16}
+      height={16}
+      loading="lazy"
+      className="w-4 h-4 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity"
+      style={{ filter: "brightness(0) invert(1)" }}
+    />
+  );
 }
 
 export default function Ecosystem() {
@@ -85,6 +85,7 @@ export default function Ecosystem() {
                     height={20}
                     loading="lazy"
                     className="w-5 h-5 shrink-0"
+                    style={{ filter: "brightness(0) invert(1)" }}
                   />
                   <span className="font-medium text-foreground text-sm flex-1">
                     {platform.name}
