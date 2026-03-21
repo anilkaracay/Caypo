@@ -103,16 +103,94 @@ export default function Accounts() {
             Every financial primitive.
           </h2>
           <p className="text-muted mt-3 max-w-lg">
-            Pay, earn, borrow, swap, invest — all through a single TypeScript import.
+            Pay, earn, borrow, swap, invest — and more. All through a single TypeScript import.
           </p>
         </div>
 
+        {/* Row 1: Core accounts */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <CheckingCard />
           <SavingsCard />
           <SmallCard accountId="credit" highlight="health" />
           <SmallCard accountId="exchange" highlight="CC Price" />
           <SmallCard accountId="investment" highlight="P&L" />
+        </div>
+
+        {/* Row 2: Platform features */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          {/* Safeguards */}
+          <motion.div
+            whileHover={{ y: -4, boxShadow: "0 0 24px rgba(249,115,22,0.15)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-surface border border-border rounded-xl p-6 hover:border-orange-500/40 transition-colors duration-200"
+          >
+            <p className="text-sm font-medium text-orange-400 mb-1">Safeguards</p>
+            <p className="text-sm text-muted mb-4">Per-transaction limits. Daily spending caps. Emergency wallet lock.</p>
+            <p className="text-3xl font-[family-name:var(--font-geist-mono)] text-orange-400 mb-3">$1,000 / tx</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-background rounded px-2 py-1 border border-border text-xs text-muted">Daily: $5,000</span>
+              <span className="bg-background rounded px-2 py-1 border border-border text-xs text-muted">Status: Active</span>
+            </div>
+          </motion.div>
+
+          {/* Privacy */}
+          <motion.div
+            whileHover={{ y: -4, boxShadow: "0 0 24px rgba(168,85,247,0.15)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-surface border border-border rounded-xl p-6 hover:border-purple-500/40 transition-colors duration-200"
+          >
+            <p className="text-sm font-medium text-purple-400 mb-1">Privacy</p>
+            <p className="text-sm text-muted mb-4">Sub-transaction privacy. Payment details visible only to sender and receiver.</p>
+            <p className="text-3xl font-[family-name:var(--font-geist-mono)] text-purple-400 mb-3">2 parties</p>
+            <p className="text-xs text-muted">Validators see nothing · Canton Network</p>
+          </motion.div>
+
+          {/* MCP */}
+          <motion.div
+            whileHover={{ y: -4, boxShadow: "0 0 24px rgba(6,182,212,0.15)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-surface border border-border rounded-xl p-6 hover:border-cyan-500/40 transition-colors duration-200"
+          >
+            <p className="text-sm font-medium text-cyan-400 mb-1">MCP</p>
+            <p className="text-sm text-muted mb-4">35 tools. 20 prompts. Claude Desktop, Cursor, Windsurf.</p>
+            <div className="font-[family-name:var(--font-geist-mono)] text-sm mb-3">
+              <p className="text-muted">{'"What\'s my balance?"'}</p>
+              <p className="text-cyan-400">→ $2,847.50 USDCx</p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Row 3: Coming soon */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 max-w-4xl mx-auto">
+          {/* Session Payments */}
+          <motion.div
+            whileHover={{ y: -4, boxShadow: "0 0 24px rgba(251,191,36,0.15)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-surface border border-border rounded-xl p-6 hover:border-amber-400/40 transition-colors duration-200 relative"
+          >
+            <span className="absolute top-4 right-4 bg-amber-400/15 text-amber-400 text-[10px] font-medium px-2 py-0.5 rounded-full">
+              Coming Soon
+            </span>
+            <p className="text-sm font-medium text-amber-400 mb-1">Session Payments</p>
+            <p className="text-sm text-muted mb-4">Pay-per-token streaming. Micro-payments as LLM output flows.</p>
+            <p className="text-2xl font-[family-name:var(--font-geist-mono)] text-amber-400 mb-3">347 tokens · $0.0041</p>
+            <p className="text-xs text-muted">New MPP intent · Deterministic finality</p>
+          </motion.div>
+
+          {/* Agent-to-Agent */}
+          <motion.div
+            whileHover={{ y: -4, boxShadow: "0 0 24px rgba(251,113,133,0.15)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-surface border border-border rounded-xl p-6 hover:border-rose-400/40 transition-colors duration-200 relative"
+          >
+            <span className="absolute top-4 right-4 bg-rose-400/15 text-rose-400 text-[10px] font-medium px-2 py-0.5 rounded-full">
+              Coming Soon
+            </span>
+            <p className="text-sm font-medium text-rose-400 mb-1">Agent-to-Agent</p>
+            <p className="text-sm text-muted mb-4">Escrow. Conditional release. Multi-step settlement between agents.</p>
+            <p className="text-2xl font-[family-name:var(--font-geist-mono)] text-rose-400 mb-3">{"A → Escrow → B"}</p>
+            <p className="text-xs text-muted">Atomic settlement · Canton-native</p>
+          </motion.div>
         </div>
 
         <p className="text-center mt-8 font-[family-name:var(--font-geist-mono)] text-xs text-muted">
