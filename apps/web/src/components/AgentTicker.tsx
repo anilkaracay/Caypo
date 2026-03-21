@@ -20,12 +20,9 @@ export default function AgentTicker() {
           return (
             <span
               key={i}
-              className="inline-flex items-center gap-2 font-[family-name:var(--font-geist-mono)] text-sm text-muted px-8"
+              className="inline-flex items-center gap-2 font-[family-name:var(--font-geist-mono)] text-sm text-muted px-6"
             >
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-emerald flex-shrink-0"
-                style={{ animation: "pulse-dot 2s infinite" }}
-              />
+              <span className="text-border select-none">|</span>
               <span className="text-foreground">{address}</span>
               <span className="text-muted">&middot;</span>
               <span>{description}</span>
