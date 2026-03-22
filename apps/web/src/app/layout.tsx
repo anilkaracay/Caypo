@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CAYPO — AI Agent Banking on Canton Network",
-    description: "Everything an agent needs. One SDK.",
+    title: "CAYPO — Agent Finance on Institutional Rails",
+    description: "Everything an agent needs. One SDK. MPP payments, USDCx transfers, MCP server on Canton Network.",
   },
   metadataBase: new URL("https://caypo.xyz"),
 };

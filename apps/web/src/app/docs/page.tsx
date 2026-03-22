@@ -7,7 +7,7 @@ import CantonPrimer from "@/components/docs/CantonPrimer";
 import Resources from "@/components/docs/Resources";
 
 export const metadata = {
-  title: "CAYPO Docs — Build with AI Agent Banking on Canton",
+  title: "CAYPO Docs — Agent Finance on Institutional Rails",
   description: "Documentation, API references, and integration guides for CAYPO. 5 npm packages, 35 MCP tools, 36 CLI commands.",
 };
 
